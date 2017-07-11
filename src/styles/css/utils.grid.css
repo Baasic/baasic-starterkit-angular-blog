@@ -1,0 +1,308 @@
+/*------------------------------------*\
+    # utils.flexgrid
+\*------------------------------------*/
+
+/**
+ * Small grid
+ */
+
+.col-sml-1 {
+   @mixin col 1;
+} 
+.col-sml-2 {
+   @mixin col 2;
+}
+.col-sml-3 {
+   @mixin col 3; 
+}
+.col-sml-4 {
+   @mixin col 4;
+}
+.col-sml-5 {
+   @mixin col 5; 
+}
+.col-sml-6 {
+   @mixin col 6;
+}
+.col-sml-7 {
+   @mixin col 7;
+}
+.col-sml-8 {
+   @mixin col 8;
+}
+.col-sml-9 {
+   @mixin col 9;
+}
+.col-sml-10 {
+   @mixin col 10;
+}
+.col-sml-11 {
+   @mixin col 11; 
+}
+.col-sml-12 {
+   @mixin col 12; 
+}
+
+/**
+ * Medium grid
+ */
+@media (--screen-from-sml) {
+    .col-med-1 {
+       @mixin col 1;
+    }
+    .col-med-2 {
+       @mixin col 2;
+    }
+    .col-med-3 {
+       @mixin col 3; 
+    }
+    .col-med-4 {
+       @mixin col 4;
+    }
+    .col-med-5 {
+       @mixin col 5; 
+    }
+    .col-med-6 {
+       @mixin col 6;
+    }
+    .col-med-7 {
+       @mixin col 7;
+    }
+    .col-med-8 {
+       @mixin col 8;
+    }
+    .col-med-9 {
+       @mixin col 9;
+    }
+    .col-med-10 {
+       @mixin col 10;
+    }
+    .col-med-11 {
+       @mixin col 11; 
+    }
+    .col-med-12 {
+       @mixin col 12; 
+    }
+}
+/**
+ * Large grid
+ */
+@media (--screen-from-med) {
+    .col-lrg-1 {
+       @mixin col 1;
+    }
+    .col-lrg-2 {
+       @mixin col 2;
+    }
+    .col-lrg-3 {
+       @mixin col 3; 
+    }
+    .col-lrg-4 {
+       @mixin col 4;
+    }
+    .col-lrg-5 {
+       @mixin col 5; 
+    }
+    .col-lrg-6 {
+       @mixin col 6;
+    }
+    .col-lrg-7 {
+       @mixin col 7;
+    }
+    .col-lrg-8 {
+       @mixin col 8;
+    }
+    .col-lrg-9 {
+       @mixin col 9;
+    }
+    .col-lrg-10 {
+       @mixin col 10;
+    }
+    .col-lrg-11 {
+       @mixin col 11; 
+    }
+    .col-lrg-12 {
+       @mixin col 12; 
+    }
+}
+/**
+ * XLarge grid
+ */
+@media (--screen-from-lrg) {
+    .col-xlrg-1 {
+       @mixin col 1;
+    }
+    .col-xlrg-2 {
+       @mixin col 2;
+    }
+    .col-xlrg-3 {
+       @mixin col 3; 
+    }
+    .col-xlrg-4 {
+       @mixin col 4;
+    }
+    .col-xlrg-5 {
+       @mixin col 5; 
+    }
+    .col-xlrg-6 {
+       @mixin col 6;
+    }
+    .col-xlrg-7 {
+       @mixin col 7;
+    }
+    .col-xlrg-8 {
+       @mixin col 8;
+    }
+    .col-xlrg-9 {
+       @mixin col 9;
+    }
+    .col-xlrg-10 {
+       @mixin col 10;
+    }
+    .col-xlrg-11 {
+       @mixin col 11; 
+    }
+    .col-xlrg-12 {
+       @mixin col 12; 
+    }
+}
+/**
+ * XXLarge grid
+ */
+@media (--screen-from-xlrg) {
+    .col-xxlrg-1 {
+       @mixin col 1;
+    }
+    .col-xxlrg-2 {
+       @mixin col 2;
+    }
+    .col-xxlrg-3 {
+       @mixin col 3; 
+    }
+    .col-xxlrg-4 {
+       @mixin col 4;
+    }
+    .col-xxlrg-5 {
+       @mixin col 5; 
+    }
+    .col-xxlrg-6 {
+       @mixin col 6;
+    }
+    .col-xxlrg-7 {
+       @mixin col 7;
+    }
+    .col-xxlrg-8 {
+       @mixin col 8;
+    }
+    .col-xxlrg-9 {
+       @mixin col 9;
+    }
+    .col-xxlrg-10 {
+       @mixin col 10;
+    }
+    .col-xxlrg-11 {
+       @mixin col 11; 
+    }
+    .col-xxlrg-12 {
+       @mixin col 12; 
+    }
+}
+/**
+ * XXXLarge grid
+ */
+@media (--screen-from-xxlrg) {
+    .col-xxxlrg-1 {
+       @mixin col 1;
+    }
+    .col-xxxlrg-2 {
+       @mixin col 2;
+    }
+    .col-xxxlrg-3 {
+       @mixin col 3; 
+    }
+    .col-xxxlrg-4 {
+       @mixin col 4;
+    }
+    .col-xxxlrg-5 {
+       @mixin col 5; 
+    }
+    .col-xxxrg-6 {
+       @mixin col 6;
+    }
+    .col-xxxlrg-7 {
+       @mixin col 7;
+    }
+    .col-xxxlrg-8 {
+       @mixin col 8;
+    }
+    .col-xxxlrg-9 {
+       @mixin col 9;
+    }
+    .col-xxxlrg-10 {
+       @mixin col 10;
+    }
+    .col-xxxlrg-11 {
+       @mixin col 11; 
+    }
+    .col-xxxlrg-12 {
+       @mixin col 12; 
+    }
+}
+
+/* lrg grid offsets */
+
+@media (min-width: 768px) {
+
+    .col-offset-med-1 {
+        @mixin offset 1;
+    }
+
+    .col-offset-med-2 {
+        @mixin offset 2;
+    } 
+
+    .col-offset-med-3 {
+        @mixin offset 3;
+    }
+
+    .col-offset-med-4 {
+        @mixin offset 4;
+    }
+
+    .col-offset-med-5 {
+        @mixin offset 5;
+    }
+
+    .col-offset-med-6 {
+        @mixin offset 6;
+    }
+
+    .col-offset-med-7 {
+        @mixin offset 7;
+    }
+
+    .col-offset-med-8 {
+        @mixin offset 8;
+    }
+
+    .col-offset-med-9 {
+        @mixin offset 9;
+    }
+
+    .col-offset-med-10 {
+        @mixin offset 10;
+    }
+
+    .col-offset-med-11 {
+        @mixin offset 11;
+    }
+
+    .col-offset-med-12 {
+        @mixin offset 12;
+    }
+
+}
+
+.col-v-center {
+    align-self: center;
+}

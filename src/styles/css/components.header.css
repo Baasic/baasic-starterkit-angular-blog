@@ -1,0 +1,9 @@
+/*------------------------------------*\
+    # components.header
+\*------------------------------------*/
+
+.header {
+	background-color: white;
+	box-shadow: $z-depth-1;
+}
+

@@ -1,0 +1,91 @@
+/*------------------------------------*\
+    # modules.btn
+\*------------------------------------*/
+
+.btn {
+
+    /**
+     * Button base
+     */
+    display: inline-block;
+    vertical-align: middle;
+
+    touch-action: manipulation;
+    user-select: none;
+
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    border: 0;
+    border-radius: $global-radial;
+
+    &:focus {
+        outline: 0;
+    }
+
+    /**
+     * Button base project styling
+     */
+    font-family: $ff-sans;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    transition: all 250ms ease-in-out;
+
+    /**
+     * Button styles
+     */
+    &--primary {
+        background: $color-primary;
+        color: white;
+        &:hover,
+        &:active,
+        &:focus {
+            background: color($color-primary blackness(+10%));
+            box-shadow: $z-depth-2;
+        }
+    }
+    &--secondary {
+        background: $color-secondary;
+        color: white;
+        &:hover,
+        &:active,
+        &:focus {
+            background: color($color-secondary blackness(+10%));
+        }
+    }
+    &--ghost {
+        background-color: transparent;
+        color: $color-secondary;
+        &:hover,
+        &:active,
+        &:focus {
+            color: color($color-secondary blackness(+10%));
+        }
+    }
+    
+    &--rounded {
+    	border-radius: $global-rounded;
+    }
+
+    /**
+     * Button sizes
+     */
+    &--sml {
+        font-size: 12px;
+        height: calc($unit * 4);
+        line-height: calc($unit * 4);
+        padding: 0 calc($unit * 2);
+    }
+    &--med {
+        font-size: 12px;
+        height: calc($unit * 6);
+        line-height: calc($unit * 6);
+        padding: 0 calc($unit * 3);
+    }
+    &--lrg {
+        height: calc($unit * 8);
+        line-height: calc($unit * 8);
+        padding: 0 calc($unit * 4);
+    }
+}

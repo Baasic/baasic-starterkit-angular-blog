@@ -1,0 +1,121 @@
+/*------------------------------------*\ 
+    # modules.playbutton
+\*------------------------------------*/
+
+.playbutton {
+    &.button {
+    	position: relative;
+    	display: block;
+    	width: 84px;
+    	height: 84px;
+    	margin: 0 auto;
+
+    	background: transparent;
+    	border: 0;
+    	padding: 0;
+    	user-select: none;
+    	cursor: pointer;
+
+    	transition: all 250ms ease-in-out;
+
+        &:after, &:before {
+            content: '';
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            transition: all .35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        &:after {
+            top: 8px;
+            left: 6px;
+            height: 64px;
+            width: 64px;
+            border: 1px solid color($color-secondary a(0.5));
+        }
+
+        &:before {
+            top: 14px;
+            left: 12px;
+            height: 52px;
+            width: 52px;
+            background: $color-secondary;
+        }
+
+        & .action {
+            z-index: 1;
+ 			display: inline-block;
+ 
+            transition: all .35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        &:focus {
+            outline: 0;
+        }
+
+        &:hover,
+        &:active {
+            &:after {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+
+            &:before {
+                transform: scale(1.1);
+            }
+
+			&.playbutton.button .action {
+				transform: scale(.9);
+			}
+        }
+        
+        &--running {
+        	&.button {
+        		&:after {
+        			border: 1px solid color($color-secondary a(0.8));
+        		}
+
+        		&:before {
+        			background: $color-secondary;
+        		}
+
+        		& .action {
+        			position: absolute;
+        			top: 31px;
+        			left: 29px;
+
+        			border-style: solid;
+        			border-width: 10px 10px 10px 10px;
+        			border-color: #fff #fff #fff #fff;
+
+        		}
+        	}
+        }
+
+        &--stopped {
+	       	&.button {
+        		&:after {
+        			border: 1px solid color($color-tertiary a(0.5));
+        		}
+
+        		&:before {
+        			background: $color-tertiary;
+        		}
+
+        		& .action {
+        			position: absolute;
+        			top: 26px;
+        			left: 30px;
+
+        			width: 0;
+        			height: 0;
+
+        			border-style: solid;
+        			border-width: 14px 0 14px 22px;
+        			border-color: transparent transparent transparent #fff;
+
+        		}
+        	}
+        }
+    }
+}

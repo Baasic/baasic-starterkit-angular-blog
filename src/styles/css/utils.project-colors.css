@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    # utils.project-colors
+\*------------------------------------*/
+
+.project-color {
+	&--light {
+		color: white;
+	}
+
+	&--dark {
+		color: $color-text;
+	}
+}

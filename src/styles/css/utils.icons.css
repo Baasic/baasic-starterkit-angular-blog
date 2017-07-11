@@ -1,0 +1,146 @@
+/*------------------------------------*\
+    # utils.icons
+\*------------------------------------*/
+
+.icon {
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+
+    &--xsml {
+        width: calc($unit * 3);
+        height: calc($unit * 3);
+        background-size: calc($unit * 3);
+    }
+
+    &--sml {
+        width: calc($unit * 4);
+        height: calc($unit * 4);
+        background-size: calc($unit * 4);
+    }
+
+    &--scale {
+		transform: scale(1);
+    	transition: transform 250ms ease-in-out;
+
+    	&:hover,
+    	&:active {
+			transform: scale(1.1);
+    	}
+    }
+
+    &--clock {
+        background-image: svg-load(../images/icon-clock.svg, stroke=#fff);
+        &.is-active {
+            background-image: svg-load(../images/icon-clock.svg, stroke=$color-secondary);
+        }
+    }
+    &--clients {
+        background-image: svg-load(../images/icon-clients.svg, stroke=#fff);
+        &.is-active {
+            background-image: svg-load(../images/icon-clients.svg, stroke=$color-secondary);
+        }
+    }
+    &--briefcase {
+        background-image: svg-load(../images/icon-briefcase.svg, stroke=#fff);
+        &.is-active {
+            background-image: svg-load(../images/icon-briefcase.svg, stroke=$color-secondary);
+        }
+    }
+    &--tags {
+        background-image: svg-load(../images/icon-tags.svg, stroke=#fff, fill=transparent);
+        &.is-active {
+            background-image: svg-load(../images/icon-tags.svg, stroke=$color-secondary, fill=transparent);
+        }
+    }
+    &--cog {
+        background-image: svg-load(../images/icon-cog.svg, stroke=#fff);
+        &.is-active {
+            background-image: svg-load(../images/icon-cog.svg, stroke=$color-secondary);
+        }
+    }
+    &--alerts {
+        background-image: svg-load(../images/ic_notifications_none_black_18px.svg, fill=#6d6d83);
+        margin-top: 5px;
+        
+        &--active {
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background-color: $color-warning;
+                border-radius: 1000px;
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                border: 2px solid color($color-primary lightness(+4%));
+            }
+        }
+    }
+    
+    &--exit {
+        background-image: svg-load(../images/ic_exit_to_app_black_24px.svg, fill=$color-primary);
+        transform: translateX(-3px);
+        transition: all 250ms ease-in-out;
+        &:hover,
+        &:active {
+            transform: translateX(0px);
+        }
+    }
+
+    /* Dashboard table icons */
+
+    &--edit {
+        background-image: svg-load(../images/ic_border_color_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_border_color_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+
+    &--delete {
+        background-image: svg-load(../images/ic_delete_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_delete_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+
+    &--start {
+        background-image: svg-load(../images/ic_play_circle_outline_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_play_circle_outline_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+
+    &--stop {
+        background-image: svg-load(../images/ic_stop_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_stop_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+
+    &--save {
+        background-image: svg-load(../images/ic_save_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_save_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+    &--cancel {
+        background-image: svg-load(../images/ic_cancel_black_24px.svg, fill: color($color-text lightness(+10%)));
+        transition: all 250ms ease-in-out;
+        
+        &:hover {
+        	background-image: svg-load(../images/ic_cancel_black_24px.svg, fill: color($color-text lightness(+20%)));
+        }
+    }
+}

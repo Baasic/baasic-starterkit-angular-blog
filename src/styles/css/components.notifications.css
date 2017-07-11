@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    # components.notifications
+\*------------------------------------*/
+
+.notifications {
+	display: inline-block;
+    width: calc($unit * 5);
+    height: calc($unit * 5);
+    border-radius: 1000px;
+    border: 1px solid color($color-primary lightness(+25%));
+    transition: border-color 250ms;
+    position: relative;
+    overflow: hidden;
+
+    &:hover, &:focus, &:active {
+        border-color: color($color-primary lightness(+60%));
+    }
+}
+

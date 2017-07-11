@@ -1,0 +1,687 @@
+/*------------------------------------*\
+	# components.timer
+\*------------------------------------*/
+
+.timer {
+	padding: calc($unit * 5);
+	padding-left: calc($unit * 6);
+	background: $color-primary;
+	background: linear-gradient(to bottom, white 0%, #e6e6e6 100%);
+	border-bottom: 1px solid $color-border;
+
+	&__overlay {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: transparent;
+
+		&---1 {
+			z-index: -1;
+		}
+
+		&--0 {
+			z-index: 0;
+		}
+
+		&--1 {
+			z-index: 1;
+		}
+	}
+
+	& .input {
+		display: block;
+		width: 100%;
+
+		@mixin type-scale $type-xlarge, 2;
+		font-weight: $type-weight-thin;
+		font-family: $ff-sans;
+
+		border: none;
+		background: transparent;
+
+		&::-webkit-input-placeholder {
+			font-weight: $type-weight-thin;
+		}
+
+		&:focus {
+			outline: 0;
+		}
+
+		@media (--screen-from-med) {
+			@mixin type-scale $type-xxxlarge, 3;
+			height: 60px;
+		}
+	}
+
+	/* Autocomplete styling */
+
+	& .autocomplete {
+		z-index: 1;
+		position: absolute;
+		width: 100%;
+		background-color: white;
+		padding: 24px;
+		box-shadow: $z-depth-2;
+	}
+
+	/* Base validation styling */
+
+	& .validation {
+		opacity: 0;
+		visibility: hidden;
+
+		position: absolute;
+
+		display: inline-block;
+
+		width: calc($unit * 4);
+		height: calc($unit * 4);
+
+		background-size: calc($unit * 4);
+		background-repeat: no-repeat;
+		background-position: center center;
+		transition: all 250ms ease-in-out;
+
+		&--primary {
+			top: calc($unit * 3.5);
+			left: 300px;
+		}
+
+		&--secondary {
+			top: calc($unit * 1.5);
+			left: 200px;
+		}
+		
+		&--active {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+
+	/* Base Time styling */
+
+	& .time {
+		@mixin type-scale $type-xlarge, 2;
+		font-weight: $type-weight-thin;
+		color: white;
+		cursor: pointer;
+
+		@media (--screen-from-med) {
+			@mixin type-scale $type-xxxlarge, 3;
+		}
+
+		&__popup {
+			z-index: 2;
+			opacity: 0;
+			visibility: hidden;
+
+			top: 20px;
+			
+			width: 150px;	
+			padding: calc($unit * 2);
+
+			background-color: white;
+			color: $color-text;
+
+			border-radius: $global-radial;
+
+			transition: all 250ms ease-in-out;
+			box-shadow: $z-depth-2;
+
+			&--visible {
+				opacity: 1;
+				visibility: visible;
+
+				position: absolute;
+				top: calc($unit * 18);
+			}
+
+			&__label {
+				margin-bottom: calc($unit * 1.5);
+				padding-left: calc($unit * 1);
+
+				@mixin type-scale $type-tiny, 0.5;
+				font-weight: $type-weight-bold;
+				letter-spacing: 1.05px;
+			}
+
+			&__validation {
+				padding-left: calc($unit * 1);
+				margin-top: $unit;
+				@mixin type-scale $type-tiny, 0.5;
+				color: $color-warning;
+			}
+
+			&__input {
+				width: 100%;
+				padding: calc($unit * 2);
+
+				background-color: transparent;
+				border: transparent;
+				border-bottom: 1px solid color($color-text a(0.7));
+
+				background-image: svg-load(../images/ic_access_time_black_24px.svg, fill: color($color-text a(0.6)));
+				background-repeat: no-repeat;
+				background-size: calc($unit * 3) calc($unit * 3);
+				background-position: 95% center;
+
+				transition: transform 250ms ease-in-out;
+
+
+				transition: transform 250ms ease-in-out;
+
+				@mixin type-scale $type-small, 0.75;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+
+				&::placeholder {
+					padding-left: calc($unit * 2);
+					@mixin type-scale $type-small, 1;
+					text-transform: uppercase;
+					letter-spacing: 1.5px;
+				}
+
+				&:hover,
+				&:focus {
+					outline: 0;
+				}
+			}
+		}
+	}
+
+	/* Base billable styling */
+
+	& .billable {
+		opacity: 0;
+		position: absolute;
+
+		& + label {
+			cursor: pointer;
+			&:before {
+				content: '';
+				float: left;
+				width: calc($unit * 5);
+				height: calc($unit * 5);
+				margin: 0 auto;
+
+				transform: scale(1);
+				transition: all 250ms ease-in-out;
+			}
+
+			&:hover:before,
+			&:focus:before {
+				transform: scale(1.1);
+			}
+		}
+
+		&:checked {
+			& + label {
+				&:before {
+					background-repeat: no-repeat;
+					background-position: center center;
+				}
+			}
+		}
+	}
+
+	/* Base projects styling */
+
+	& .select {
+		position: relative;
+
+		display: block;
+		width: 100%;
+		transition: all 500ms ease-in-out;
+
+
+		& .dropdown {
+			width: 100%;
+			padding: calc($unit * 2);
+			padding-right: calc($unit * 6);
+
+			background-color: transparent;
+			border-radius: 50px;
+
+			background-repeat: no-repeat;
+			background-size: calc($unit * 3) calc($unit * 3);
+			background-position: 95% center;
+			transition: transform 250ms ease-in-out;
+
+			@mixin type-scale $type-small, 0.75;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+
+			&::placeholder {
+				@mixin type-scale $type-small, 1;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+			}
+			
+			&:hover,
+			&:focus {
+				padding: calc($unit * 2) 0;
+				outline: 0;
+			}
+		}
+
+		& .list {
+			z-index: 2;
+			opacity: 0;
+			visibility: hidden;
+
+			top: 20px;
+
+			transition: all 250ms ease-in-out;
+
+			background-color: white;
+			color: $color-text;
+
+			border-radius: $global-radial;
+			box-shadow: $z-depth-2;
+
+			&--visible {
+				opacity: 1;
+				visibility: visible;
+
+				position: absolute;
+				top: calc($unit * 9);
+
+				width: 300px;
+			}
+
+			&__item {
+				display: block;
+
+				padding: calc($unit * 2);
+				
+				@mixin type-scale $type-small, 1;
+				color: color($color-text a(0.6));
+				
+				border-bottom: 1px solid color($color-text a(0.1));
+				transition: all 250ms ease-in-out;
+
+
+				&:last-item {
+					border-bottom: none;
+				}
+
+				&--focus {
+					color: $color-text;
+					cursor: pointer;
+				}
+
+				&--hover {
+					color: color($color-text a(1));
+					cursor: pointer;
+				}
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	/* Base tags styling */
+
+	& .tags {
+		&__container {}
+
+		&__title {
+			@mixin type-scale $type-small, 1;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+		}
+
+		&__tag {
+			display: inline-block;
+			padding: 0 calc($unit * 1.5);
+			margin-right: $unit;
+
+			@mixin type-scale $type-small, 1;
+			border-radius: $global-rounded;
+
+			cursor: pointer;
+		}
+
+		&__add {
+			display: inline-block;
+			padding: 0 calc($unit * 1.25);
+			
+			border-radius: $global-rounded;
+			
+			transition: all 250ms ease-in-out;
+			transform: rotate(0);
+			transform-origin: center;
+
+			cursor: pointer;
+
+			&:hover,
+			&:focus {
+				transform: rotate(90deg);
+			}
+
+			&--alt {
+    			padding: 0 calc($unit * 1.5);
+			}
+		}
+
+		&__list {
+			z-index: 2;
+			opacity: 0;
+			visibility: hidden;
+
+			top: calc($unit * 10);
+
+			padding: calc($unit * 2);
+
+			background-color: white;
+			color: $color-text;
+			border-radius: $global-radial;
+			box-shadow: $z-depth-2;
+			
+			transition: all 250ms ease-in-out;
+
+			&--visible {
+				opacity: 1;
+				visibility: visible;
+
+				position: absolute;
+				top: calc($unit * 25);
+
+				width: 300px;
+			}
+
+			&__item {
+				display: inline-block;
+				padding: 0 calc($unit * 1.5);
+				margin-bottom: $unit;
+	
+				
+				@mixin type-scale $type-small, 1;
+				color: color($color-text a(0.6));
+
+				border-radius: $global-rounded;
+				border: 1px solid color($color-text a(0.6));
+				transition: all 250ms ease-in-out;
+
+				cursor: pointer;
+
+				/* Tag ellipsis */
+
+				max-width: 70px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+
+				&:focus {
+					outline: none;
+				}
+
+				&--selected {
+					background-color: color($color-text a(0.6));
+					color: white;
+
+					border: 1px solid color($color-text a(0));
+				}
+			}
+
+			&__search {
+				width: 100%;
+				margin-bottom: calc($unit * 2);
+				padding: calc($unit * 1.5);
+				padding-right: calc($unit * 6);
+
+				background-color: transparent;
+				border-radius: 50px;
+
+				color: $color-text;
+				border: 1px solid color($color-text a(0.7));
+
+				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color($color-text a(0.6)));
+				background-repeat: no-repeat;
+				background-size: calc($unit * 3) calc($unit * 3);
+				background-position: 95% center;
+
+				transition: all 250ms ease-in-out;
+				backface-visibility: hidden;
+				transform-style: preserve-3d;
+
+				@mixin type-scale $type-small, 0.75;
+				text-transform: uppercase;
+				letter-spacing: 1.5px;
+
+				&::placeholder {
+					@mixin type-scale $type-small, 0.75;
+
+					text-transform: uppercase;
+					letter-spacing: 1.5px;
+					
+					color: color($color-text a(0.4));
+				}
+
+				&:hover,
+				&:focus {
+					padding: calc($unit * 1.5) 0;
+					outline: 0;
+    				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color($color-text a(1)));
+    				border: 1px solid transparent;
+    				border-bottom: 1px solid color($color-text a(0.9));
+					border-radius: 0;
+				}
+			}
+		}
+	}
+
+	/* Dark theme */
+
+	&--dark {
+		& .input {
+			color: white;
+
+			&::-webkit-input-placeholder {
+				color: color(white a(0.5));
+			}
+
+			&:focus {
+				border-color: color($color-primary lightness(+40%));
+			}
+		}
+
+		& .validation {
+			background-image: svg-load(../images/ic_error_outline_black_24px.svg, fill: color(white a(0.6)));
+		}
+
+		& .time {
+			color: white;
+		}
+
+		& .billable {
+			& + label {
+				&:before {
+					background-image: svg-load(../images/icon-billable.svg, fill: color(white a(0.5)));
+				}
+
+				&:hover:before {
+					transform: scale(1.1);
+				}
+				&:focus:before {
+					background-image: svg-load(../images/icon-billable.svg, fill: color(white a(0.5)), stroke: white);
+				}
+			}
+
+			&:checked {
+				& + label {
+					&:before {
+						background-image: svg-load(../images/icon-billable.svg, fill=white);
+					}
+				}
+			}
+		}
+
+		& .timer {
+			width: calc($unit * 8);
+			height: calc($unit * 8);
+
+			background: $color-secondary;
+
+			border-radius: $global-rounded;
+			padding: calc($unit / 2);
+			border: 1px solid $color-secondary;
+			
+			transition: all 250ms ease-in-out;
+		}
+
+		& .select {
+			& .dropdown {
+				color: white;
+				border: 1px solid color(white a(0.7));
+
+				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color(white a(0.6)));
+				transition: all 250ms ease-in-out;
+
+				backface-visibility: hidden;
+				transform-style: preserve-3d;
+
+				&::placeholder {
+					color: color(white a(0.4));
+				}
+
+				&:hover,
+				&:focus {
+    				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color(white a(1)));
+    				border: 1px solid transparent;
+    				border-bottom: 1px solid color(white a(0.9));
+					border-radius: 0;
+				}
+			}
+		}
+
+		/* Tags styling */
+
+		& .tags {
+			&__tag {
+				border: 1px solid white;
+				color: white;
+
+				&--hover {
+					background-color: color(white a(0.3));
+				}
+
+				&--focus {
+					background-color: color(black a(0.5));
+				}
+			}
+
+			&__title {
+				color: white;
+			}
+
+			&__add {
+				color: white;
+				border: 1px solid white;
+			}
+		}
+	}
+
+	/* Light theme */
+
+	&--light {
+		& .input {
+			color: $color-text;
+
+			&::placeholder {
+				color: color($color-text lightness(+40%));
+			}
+
+			&:focus {
+				border-color: color($color-primary lightness(+40%));
+			}
+		}
+
+		& .validation {
+			background-image: svg-load(../images/ic_error_outline_black_24px.svg, fill: color($color-text a(0.6)));
+		}
+
+		& .time {
+			color: $color-text;
+		}
+
+		& .billable {
+			& + label {
+				&:before {
+					background-image: svg-load(../images/icon-billable.svg, fill: color(#000 a(0.4)));
+				}
+			}
+
+			&:checked {
+				& + label {
+					&:before {
+						background-image: svg-load(../images/icon-billable.svg, fill: $color-text);
+						opacity: 1;
+
+					}
+				}
+			}
+		}
+
+		& .select {
+			& .dropdown {
+
+			}
+
+			& .dropdown {
+				color: $color-text;
+				background-color: transparent;
+				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color($color-text a(0.6)));
+				border: 1px solid $color-text;
+
+				transition: all 250ms ease-in-out;
+
+				backface-visibility: hidden;
+				transform-style: preserve-3d;
+
+				&::placeholder {
+					color: color($color-text a(0.8));
+				}
+
+				&:hover,
+				&:focus {
+    				background-image: svg-load(../images/ic_search_white_24px.svg, fill: color($color-text a(1)));
+    				border: 1px solid transparent;
+    				border-bottom: 1px solid color($color-text a(0.9));
+					border-radius: 0;
+				}
+			}
+		}
+
+		/* Tags styling */
+
+		& .tags {
+			&__tag {
+				border: 1px solid $color-text;
+				color: $color-text;
+
+				&--hover {
+					background-color: color($color-text a(0.3));
+				}
+
+				&--focus {
+					background-color: color(black a(0.5));
+				}
+			}
+
+			&__title {
+				color: $color-text;
+			}
+
+			&__add {
+				color: $color-text;
+				border: 1px solid $color-text;
+			}
+		}
+	}
+}

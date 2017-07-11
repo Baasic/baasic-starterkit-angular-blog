@@ -1,0 +1,12 @@
+/*------------------------------------*\
+    # components.sidebar
+\*------------------------------------*/
+
+.sidebar {
+    background: $color-primary;
+    background: linear-gradient(to bottom, $color-primary 0%,color($color-primary lightness(+6%)) 100%);
+
+    &__links {
+    	padding: calc($unit * 6) calc($unit * 3);
+    }
+}

@@ -1,0 +1,68 @@
+/*------------------------------------*\
+    # components.nav
+\*------------------------------------*/
+
+.nav {
+
+    &--primary {
+
+        @media all and (--screen-from-lrg) {
+            position: absolute;
+            top: 50vh;
+            transform: translateY(-50%);
+        }
+
+        &__item {
+            display: block;
+        }
+
+        &__link {
+            display: block;
+            position: relative;
+
+            padding: calc($unit * 1) calc($unit * 3);
+
+            @mixin type-scale $type-small, 1;
+            font-weight: $type-weight-light;
+            text-decoration: none;
+            letter-spacing: 0.25px;
+            color: white;
+            transition: all 0.35s cubic-bezier(0.65, 0.05, 0.36, 1);
+            opacity: 0.4;
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                left: -calc($unit * 2);
+                bottom: 50%;
+                width: calc($unit * 4);
+                transform: translateX(-100%);
+                transition: all .40s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+                border-bottom: 1px solid $color-secondary;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                outline: 0;
+                opacity: 1;
+
+                &:after {
+                    border-bottom-color: white;
+                    transform: translateX(0%);
+                }
+            }
+
+            &.is-active {
+                color: $color-secondary;
+                opacity: 1;
+
+                &:after {
+                    border-bottom-color: $color-secondary;
+                    transform: translateX(0%);
+                }
+            }
+        }
+    }
+}

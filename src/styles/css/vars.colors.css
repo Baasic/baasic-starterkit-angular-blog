@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    # vars.colors
+\*------------------------------------*/
+
+/**
+ * Generic colors
+ * Color naming taken from: http://www.color-blindness.com/color-name-hue/
+ */
+
+/**
+ * Brand colors
+ */
+$tuna:       	#32323C;
+$torch-red:     #F42534;
+$kelly-green:	#1AB827;
+
+/**
+ * Global text color
+ */
+$color-text:        #575756;
+
+/**
+ * Theme colors
+ */
+$color-primary:     $tuna;
+$color-secondary: 	$torch-red;
+$color-tertiary:	$kelly-green;
+
+/**
+ * Utility colors
+ */
+$color-warning:     #f44336;
+$color-success:     #4caf50;
+$color-note:        #ffeb3b;
+
+/**
+ * Border colors
+ */
+$color-border:		#e0e0e0;

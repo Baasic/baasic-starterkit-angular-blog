@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    # components.layout
+\*------------------------------------*/
+
+$sidebar-width: calc($unit * 28);
+
+.layout {
+    &__aside {
+        @media all and (--screen-from-lrg) {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            width: $sidebar-width;
+
+            z-index: 3;
+            box-shadow: 8px -8px 33px 0px rgba(0,0,0,0.12);
+        }
+    }
+    &__timer {
+        @media all and (--screen-from-lrg) {
+            z-index: 2;
+
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: $sidebar-width;
+
+			background: white;
+
+            transition: all 250ms ease-in-out;
+        }
+
+        &.is-active {
+			background: linear-gradient(to bottom, rgba(27,155,45,1) 0%, rgba(27,155,45,1) 38%, rgba(26,184,39,1) 100%);
+        }
+    }
+    &__content {
+        margin-left: $sidebar-width;
+        padding: calc($unit * 5);
+        padding-top: calc($unit * 29);
+    }
+}

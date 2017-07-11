@@ -1,0 +1,52 @@
+<section class="container container--sml spc--top--xlrg">
+<div class="card">
+	<h1 class="type--medium spc--bottom--med">Sign up</h1>
+	<form name="registrationForm" #f="ngForm">
+        <div class="spc--bottom--med">
+            <input type="text" 
+            class="input input--text input--med" 
+            name="username" 
+            placeholder="Username" 
+            [(ngModel)]="username" 
+            required/>
+        </div>
+	    <div class="spc--bottom--sml">
+	        <input type="email" 
+                class="input input--text input--med" 
+                name="email" 
+                placeholder="Email" 
+                [(ngModel)]="email" 
+                required/>
+	    </div>
+	    <div class="spc--bottom--med">
+	        <input type="password" 
+                class="input input--text input--med" 
+                name="password" 
+                placeholder="Password" 
+                [(ngModel)]="password"
+                validateEqual="confirmPassword"
+                reverse="true" 
+                required/>
+	    </div>
+        <div class="spc--bottom--med">
+            <input type="password" 
+                class="input input--text input--med" 
+                name="confirmPassword" 
+                placeholder="Confirm password"
+                [(ngModel)]="confirmPassword"
+                required
+                validateEqual="password"
+                #confPassword="ngModel"/>
+            <div [hidden]="confPassword.valid || (confPassword.pristine && !f.submitted)">
+                Password mismatch
+            </div>
+        </div>
+		<div class="spc--bottom--med">
+			<p class="type--small type--warning">{{errorMessage}}</p>
+		</div>
+	    <div class="group">
+	    	<button type="submit" class="pull btn btn--primary btn--med" (click)="onClickSignUp()">Sign Up</button>
+	    </div>
+	</form> 
+</div>
+</section>
