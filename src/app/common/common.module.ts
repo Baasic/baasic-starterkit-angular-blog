@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { ErrorService, UtilityService } from 'common';
-import { ResourceService} from 'common/data';
+import { ErrorService, HttpService, UserEventingService, UtilityService } from 'common';
+import { BlogService, ResourceService} from 'common/data';
 import { LoginService, SignUpService } from 'common/security';
 import { SharedModule } from 'shared';
 
@@ -18,7 +18,11 @@ import { SharedModule } from 'shared';
     providers: [
         //common
         ErrorService,
+        HttpService,
+        UserEventingService,
         UtilityService,
+        //common/data
+        BlogService,
         //common/security
         LoginService,
         SignUpService

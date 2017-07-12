@@ -1,0 +1,34 @@
+<div class="articles">
+    <article
+        class="article article--ingrid"
+        *ngFor="let blog of blogList?.item; let first = first;"
+        [ngClass]=" { 'article--lrg': first , 'article--sml': !first } ">
+        <div class="article__holder">
+            <figure class="article__figure">
+                <a ui-sref="master.blog-detail({ slug: blog.slug })"><img [src]="blog.featured" alt="Test photo"></a>
+            </figure>
+            <div class="article__content">
+                <header class="article__header">
+                    <h2 class="article__title">
+                        <a class="article__title__link" ui-sref="master.blog-detail({ slug: blog.slug })">{{ blog.title }}</a>
+                    </h2>
+                    <span class="article__date">{{ blog.publishDate | date : 'medium' }}</span>
+                </header>
+                <div class="article__summary">
+                    <p class="article__summary__text">{{ blog.excerpt }}</p>
+                </div>
+
+                <div class="article__info">
+                    <div class="article__readmore">
+                        <a ui-sref="master.blog-detail({ slug: blog.slug })" class="btn btn--light btn--med rounded">Read more</a>
+                        <a *ngIf="user?.isAuthenticated" ui-sref="master.blog-edit({ slug: blog.slug })" class="btn btn--light btn--med rounded">Edit</a>
+                    </div>
+                    <span class="article__readingtime">{{ blog.readingTime.text }}</span>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article *ngIf="!hasBlogs">
+        <p>No blog posts added.</p>
+    </article>
+</div>

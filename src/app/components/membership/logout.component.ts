@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { BaasicAppService } from 'baasic-sdk-angular';
+import { UserEventingService } from 'common';
 
 @Component({
     selector: 'baasic-logout',
@@ -14,7 +15,10 @@ export class LogoutComponent {
 
     private readonly storageKey: string = 'socialData';
 
-    constructor(private baasicAppService: BaasicAppService) { }
+    constructor(
+        private baasicAppService: BaasicAppService,
+        private userEventingService: UserEventingService
+    ) { }
 
     private clearUser(): void {
         this.baasicAppService.setUser(null);
@@ -36,6 +40,7 @@ export class LogoutComponent {
 
             this.clearUser();
             this.logoutEvent.emit();
+            this.userEventingService.notifyLogout();
         } else {
             this.clearUser();
         }

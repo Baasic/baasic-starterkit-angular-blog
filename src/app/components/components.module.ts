@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { 
+    BlogListComponent,
     LoginComponent, 
     LogoutComponent,
     SidebarComponent,
@@ -20,12 +21,14 @@ import {
         MtCommonModule
     ],
     declarations: [
+        BlogListComponent,
         LoginComponent,
         LogoutComponent,
         SidebarComponent,
         SocialLoginComponent
     ],
     exports: [
+        BlogListComponent,
         LoginComponent,
         LogoutComponent,
         SidebarComponent,
