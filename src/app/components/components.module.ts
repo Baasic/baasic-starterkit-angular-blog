@@ -8,6 +8,7 @@ import {
     BlogListComponent,
     LoginComponent, 
     LogoutComponent,
+    MarkdownSyntaxHighlightComponent,
     SidebarComponent,
     SocialLoginComponent 
 } from 'components';
@@ -24,6 +25,7 @@ import {
         BlogListComponent,
         LoginComponent,
         LogoutComponent,
+        MarkdownSyntaxHighlightComponent,
         SidebarComponent,
         SocialLoginComponent
     ],
@@ -31,6 +33,7 @@ import {
         BlogListComponent,
         LoginComponent,
         LogoutComponent,
+        MarkdownSyntaxHighlightComponent,
         SidebarComponent,
         SocialLoginComponent
     ],

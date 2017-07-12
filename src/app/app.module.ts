@@ -48,7 +48,9 @@ type StoreType = {
     HttpModule,
     MtLayoutsModule,
     RouterModule.forRoot(ROUTES, { useHash: false }),
-    BaasicApp.forRoot('test-aplikacija', {})
+    BaasicApp.forRoot('starterkit-blog', {
+      apiVersion: 'beta'
+    })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

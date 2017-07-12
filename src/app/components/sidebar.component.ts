@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BaasicAppService } from 'baasic-sdk-angular';
+import { Router } from '@angular/router';
+import { BaasicAppService, IArticleTag } from 'baasic-sdk-angular';
 import { UtilityService } from 'common';
+import { BlogService } from 'common/data';
 
 @Component({
     selector: 'baasic-sidebar',
@@ -10,10 +12,13 @@ import { UtilityService } from 'common';
 export class SidebarComponent implements OnInit {
 
     private user: any;
+    private tags: IArticleTag[] = [];
 
     constructor(
         private baasicAppService: BaasicAppService,
-        private utilityService: UtilityService
+        private blogService: BlogService,
+        private utilityService: UtilityService,
+        private router: Router
     ) { }
 
     async ngOnInit(): Promise<void> { 
@@ -38,6 +43,12 @@ export class SidebarComponent implements OnInit {
         }
 
         this.user = user;
+
+        this.tags = (await this.blogService.tags.find({ pageSize: 10 })).item;
+    }
+
+    newBlogPost(): void {
+        this.router.navigate(['/new-blog-post']);
     }
 
     setEmptyUser(): void {

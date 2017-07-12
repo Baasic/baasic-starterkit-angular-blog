@@ -14,7 +14,7 @@
 
     </div>
 </div>
-<div class="message" ng-class="{'close': messageClosed}">
+<div class="message" [ngClass]="{'close': messageClosed}">
     <div class="message__container">
         <a href="http://baasic.com" class="message__icon--primary">
         </a>
@@ -22,5 +22,5 @@
             <p class="message__title">Grab a Starter Kit and start building!</p>
         </a>
     </div>
-    <a href="javascript:void(0)" (click)="messageClosed=!messageClosed" ng-class="{'nShow': messageClosed}"><span class="message__icon--secondary">Close</span></a>
+    <a href="javascript:void(0)" (click)="toggleMessage()" [ngClass]="{'nShow': messageClosed}"><span class="message__icon--secondary">Close</span></a>
 </div>

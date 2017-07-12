@@ -137,8 +137,8 @@ export class BlogService {
 }
 
 export interface IArticleSearchOptions extends IOptions {
-    statuses: string[];
-    tags: string[];
-    startDate: string;
-    endDate: string;
+    statuses?: string[];
+    tags?: string[];
+    startDate?: string;
+    endDate?: string;
 }

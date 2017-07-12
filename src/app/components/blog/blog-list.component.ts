@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ArticleService } from 'baasic-sdk-angular';
+import { BlogService } from 'common/data';
 import { IBlogUser } from 'routes/main';
 
 @Component({
@@ -16,20 +16,20 @@ export class BlogListComponent implements OnInit {
     public hasBlogs: boolean = true;
     public pagerDate: any;
     
-    constructor(private articleService: ArticleService) { }
+    constructor(private blogService: BlogService) { }
 
     async ngOnInit(): Promise<void> { 
         await this.loadBlogs();
     }
 
     async loadBlogs(): Promise<void> {
-        let blogList = (await this.articleService.articles.find({
+        let blogList = await this.blogService.find({
             statuses: ['published'],
-            page: 1,
-            rpp: this.pageSize,
+            pageNumber: 1,
+            pageSize: this.pageSize,
             orderBy: 'publishDate',
             orderDirection: 'desc'
-        })).data;
+        });
 
         this.pagerDate = {
             currentPage: blogList.page,

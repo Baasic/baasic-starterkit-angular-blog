@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
+import { CanActivateGuard } from 'common/security';
 import { MainLayout } from 'layouts';
 import { NoContentRoute } from 'routes';
-import { HomeRoute } from 'routes/main';
+import { HomeRoute, NewBlogPostRoute } from 'routes/main';
 
 
 @NgModule({
@@ -18,6 +19,11 @@ import { HomeRoute } from 'routes/main';
                     {
                         path: 'main',
                         component: HomeRoute
+                    },
+                    {
+                        path: 'new-blog-post',
+                        canActivate: [CanActivateGuard],
+                        component: NewBlogPostRoute
                     },
                     { path: '**', component: NoContentRoute },
                 ]
