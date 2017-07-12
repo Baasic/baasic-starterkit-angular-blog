@@ -1,0 +1,69 @@
+<div class="layout__form">
+    <h1 class="spc--bottom--lrg">{{ isNew ? 'Add New' : 'Edit' }} Blog Post</h1>
+    <form name="blogPost" [formGroup]="form" novalidate class="form">
+        <div class="form__field">
+            <label class="form__label" for="fieldTitle">Title</label>
+            <input type="text" name="title" id="fieldTitle" formControlName="title" class="input input--text" required />
+            <!--<p class="alert alert--warning" *ngIf="form.controls.title.touched && form.controls.title.errors.required">Title is required.</p>-->
+        </div>
+        <div class="form__field">
+            <label class="form__label" for="fieldBody">Featured image</label>
+            <input type="text" name="featured" id="fieldBody" formControlName="featured" class="input input--text" />
+        </div>
+        <div class="form__field">
+            <label class="form__label" for="fieldExcerpt">Excerpt</label>
+            <textarea name="excerpt" id="fieldExcerpt" formControlName="excerpt" class="input input--textarea"></textarea>
+        </div>
+        <div class="form__field spc--bottom--med">
+            <label class="form__label" for="fieldContent">Content</label>
+            <div class="group">
+                <div class="editor__type">
+                    <div class="editor__header">
+                        <small class="editor__explain">Write your post below in markdown format. You can use right side for preview, HTML view or help with markdown syntax.</small>
+                    </div>
+                    <textarea placeholder="Type your markdown text here.." name="content" id="fieldContent" formControlName="content" class="editor__field" required></textarea>
+                    <!--<p class="alert alert--warning" *ngIf="form.controls.content.touched && form.controls.content.errors.required">Content is required.</p>-->
+                </div>
+                <div class="editor__preview">
+                    <div class="editor__header">
+                        <button class="btn btn--light btn--med rounded" type="button" [ngClass]="{ 'active': viewMode === 'markdown' }" (click)="setViewMode('markdown')">Preview</button>
+                        <button class="btn btn--light btn--med rounded" type="button" [ngClass]="{ 'active': viewMode === 'html' }" (click)="setViewMode('html')">Html</button>
+                        <button class="btn btn--light btn--med rounded" type="button" [ngClass]="{ 'active': viewMode === 'help' }" (click)="setViewMode('help')">Help</button>
+                    </div>
+                    <div class="editor__field styledtext" *ngIf="viewMode === 'markdown'">
+                        <markdown [data]="content"></markdown>
+                    </div>
+                    <div class="editor__field" *ngIf="viewMode === 'html'">
+                        {{ content }}
+                    </div>
+                    <div class="editor__field" *ngIf="viewMode === 'help'">
+                        <markdown-syntax-highlight></markdown-syntax-highlight>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form__field spc--bottom--med">
+            <div>
+                <input type="checkbox" name="blogComments" id="blogComments" value="true" formControlName="allowComments">
+                <label for="blogComments">Enable Comments on this Blog Post</label>
+            </div>
+            <div>
+                <input type="checkbox" name="blogCommentsHide" id="blogCommentsHide" value="true" formControlName="hideComments">
+                <label for="blogCommentsHide">Hide Comment Area</label>
+            </div>
+        </div>
+        <div class="form__field">
+            <!--<tags-input class="form__label" ng-model="blog.tags" display-property="tag" add-on-comma="true">
+                <auto-complete source="loadTags($query)">
+                </auto-complete>
+            </tags-input>-->
+        </div>
+        <div class="form__field">
+            <button type="submit" class="btn btn--primary btn--med rounded" (click)="saveBlog()">Save</button>
+            <button type="button" class="btn btn--light btn--med rounded" (click)="cancelEdit()">Cancel</button>
+        </div>
+        <div *ngIf="error">
+            {{ error }}
+        </div>
+    </form>
+</div>

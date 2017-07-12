@@ -3,9 +3,11 @@ import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'angular2-markdown';
 import { MtCommonModule } from 'common';
 import { 
     BlogListComponent,
+    BlogPostComponent,
     LoginComponent, 
     LogoutComponent,
     MarkdownSyntaxHighlightComponent,
@@ -19,10 +21,12 @@ import {
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        MtCommonModule
+        MtCommonModule,
+        MarkdownModule.forRoot()
     ],
     declarations: [
         BlogListComponent,
+        BlogPostComponent,
         LoginComponent,
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
@@ -31,6 +35,7 @@ import {
     ],
     exports: [
         BlogListComponent,
+        BlogPostComponent,
         LoginComponent,
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
