@@ -6,8 +6,8 @@ import { MarkdownModule } from 'angular2-markdown';
 import { MtCommonModule } from 'common';
 import { MtComponentsModule } from 'components';
 import { NoContentRoute } from 'routes';
-import { HomeRoute, NewBlogPostRoute } from 'routes/main';
-import { LoginRoute, SignUpRoute } from 'routes/public';
+import { NewBlogPostRoute } from 'routes/main';
+import { HomeRoute, LoginRoute, SignUpRoute } from 'routes/public';
 
 
 @NgModule({

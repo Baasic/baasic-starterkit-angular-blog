@@ -4,7 +4,7 @@ import { MtCommonModule } from 'common';
 import { CanActivateGuard } from 'common/security';
 import { MainLayout } from 'layouts';
 import { NoContentRoute } from 'routes';
-import { HomeRoute, NewBlogPostRoute } from 'routes/main';
+import { NewBlogPostRoute } from 'routes/main';
 
 
 @NgModule({
@@ -16,10 +16,6 @@ import { HomeRoute, NewBlogPostRoute } from 'routes/main';
                 component: MainLayout,
                 data: {},
                 children: [
-                    {
-                        path: 'main',
-                        component: HomeRoute
-                    },
                     {
                         path: 'new-blog-post',
                         canActivate: [CanActivateGuard],

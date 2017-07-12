@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { PublicLayout } from 'layouts';
-import { LoginRoute, SignUpRoute } from 'routes/public';
+import { HomeRoute, LoginRoute, SignUpRoute } from 'routes/public';
 
 @NgModule({
     imports: [
@@ -13,7 +13,8 @@ import { LoginRoute, SignUpRoute } from 'routes/public';
                 component: PublicLayout,
                 children: [
                     // temporary workaround - empty path is recognized only in first imported routing module
-                    //{ path: '', redirectTo: '/main', pathMatch: 'full' },
+                    { path: '', redirectTo: '/main', pathMatch: 'full' },
+                    { path: 'main', component: HomeRoute},
                     { path: 'login', component: LoginRoute },
                     { path: 'signup', component: SignUpRoute }
                 ]
