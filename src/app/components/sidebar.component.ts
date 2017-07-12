@@ -39,4 +39,10 @@ export class SidebarComponent implements OnInit {
 
         this.user = user;
     }
+
+    setEmptyUser(): void {
+        this.user = {
+            isAuthenticated: false
+        };
+    }
 }

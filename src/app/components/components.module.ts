@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { 
     LoginComponent, 
+    LogoutComponent,
     SidebarComponent,
     SocialLoginComponent 
 } from 'components';
@@ -20,11 +21,13 @@ import {
     ],
     declarations: [
         LoginComponent,
+        LogoutComponent,
         SidebarComponent,
         SocialLoginComponent
     ],
     exports: [
         LoginComponent,
+        LogoutComponent,
         SidebarComponent,
         SocialLoginComponent
     ],

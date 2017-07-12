@@ -59,15 +59,13 @@
             <div class="sidebar__widget">
                 <h2 class="sidebar__title">Admin</h2>
 
-                <div ng-if="$root.user.isAuthenticated">
+                <div *ngIf="user?.isAuthenticated">
                     <p class="sidebar__message">Welcome, {{ user?.displayName }}</p>
                     <button type="button" class="btn btn--primary btn--med rounded" ng-click="newBlogPost()">New post</button>
-                    <!--<baasic-logout on-logout="setEmptyUser()">
-                        <button type="button" class="btn btn--light btn--med rounded" ng-click="logout()">Logout</button>
-                    </baasic-logout>-->
+                    <baasic-logout (logout)="setEmptyUser()"></baasic-logout>
                 </div>
                     
-                <div ng-if="!$root.user.isAuthenticated">
+                <div *ngIf="!user?.isAuthenticated">
                     <p class="sidebar__message">To create new blog please </p>
                     <a href="javascript:void(0)" class="btn btn--primary btn--med rounded" [routerLink]="['/login']">login</a> or
                     <a href="javascript:void(0)" class="btn btn--primary btn--med rounded" [routerLink]="['/register']">register</a>
