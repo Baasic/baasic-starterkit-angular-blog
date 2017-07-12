@@ -1,0 +1,47 @@
+<div>
+    <h1>Social Login</h1>
+    <div class="group spc--top--xlrg">
+        <div class="form__field clearfix">
+            <button type="button" class="smm__icon--login smm__icon--login--facebook" (click)="startLogin('facebook')" title="Sign in with Facebook"></button>
+            <button type="button" class="smm__icon--login smm__icon--login--twitter" (click)="startLogin('twitter')" title="Sign in with Twitter"></button>
+            <button type="button" class="smm__icon--login smm__icon--login--google" (click)="startLogin('google')" title="Sign in with Google"></button>
+            <button type="button" class="smm__icon--login smm__icon--login--github" (click)="startLogin('github')" title="Sign in with Github"></button>
+        </div>
+    </div>
+
+    <div>
+        <p *ngIf="notification && notification.length > 0">
+            {{vm.socialLogin.notification}}
+        </p>
+    </div>
+
+    <div *ngIf="showCredentials">
+        <form name="socialLoginForm">
+            <div  class="group">
+                <h1 class="spc--top--sml spc--bottom--lrg">Social Login Form</h1>
+                
+                <div class="form__field--half">
+                    <label for="social-login-userName" class="form__label">Username:</label>
+                    <input id="social-login-userName" class="input input--text" name="username" type="email" formControlName="username" required maxlength="30">
+                    <div *ngIf="socialLoginForm.$submitted || socialLoginForm.username.$touched">
+                        <span class="alert alert--warning" ng-show="socialLoginForm.username.$error.required">Username is required.</span>
+                        <span class="alert alert--warning" ng-show="socialLoginForm.username.$error.required">Username is required.</span>
+                    </div>
+                </div>
+
+                <div class="form__field--half">
+                    <label for="password" class="form__label">Password:</label>
+                    <input id="password" class="input input--text" name="password" type="password" formControlName="password" required maxlength="30">
+                    <div ng-show="soacialLoginForm.$submitted || soacialLoginForm.password.$touched">
+                        <span class="alert alert--warning" ng-show="soacialLoginForm.password.$error.required">Password is required.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__field">
+                <button type="submit" class="btn btn--primary btn--med" (click)="login()">Submit</button>
+                <button type="submit" class="btn btn--secondary btn--med" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

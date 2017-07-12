@@ -129,6 +129,14 @@ module.exports = function (options) {
           loader: 'json-loader'
         },
 
+        {
+          test: /\.svg/,
+          use: {
+            loader: 'svg-url-loader',
+            options: {}
+          }
+        },
+
         /**
          * Global css files 
          */
@@ -186,7 +194,7 @@ module.exports = function (options) {
         /* File loader for supporting images, for example, in CSS files.
          */
         {
-          test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg)$/,
+          test: /\.(jpg|png|gif|woff|woff2|eot|ttf)$/,
           loader: 'file-loader'
         }
 

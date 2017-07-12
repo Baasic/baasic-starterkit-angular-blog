@@ -2,76 +2,101 @@
     # base.typography
 \*------------------------------------*/
 
-/**
- * Headings
- */
+/* Default headings */
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ff-sans);
+    font-weight: var(--type-bold);
     margin: 0;
+    text-rendering: optimizeLegibility;
 }
 h1 {
-    @mixin type-scale $type-xxlarge, 1.75;
+    font-size: var(--type-xlarge);
+    line-height: calc(var(--base-line-height)*1.5);
 }
 h2 {
-    @mixin type-scale $type-xlarge, 1.5;
+    font-size: var(--type-large);
+    line-height: calc(var(--base-line-height)*1.25);
 }
 h3 {
-    @mixin type-scale $type-large, 1.25;
+    font-size: var(--type-medium);
+    line-height: calc(var(--base-line-height)*1.25);
 }
-h4, h5, h6 {
-    @mixin type-scale $type-medium, 1;
+h4 {
+    font-size: var(--type-base);
 }
-
-/**
- * Paragraphs
- */
+h5 {
+    font-size: var(--type-base);
+}
+h6 {
+    font-size: var(--type-base);
+}
+/* Default paragraphs */
 p {
     margin: 0;
 }
-
-/**
- * Lists (ol, ul, dd)
- */
-ol, ul, dl {
-    margin: 0;
+/* Ordered lists */
+ol {
     padding: 0;
+    margin: 0;
+    list-style-position: inside;
+}
+ol > li {
+    font-size: var(--type-base);
+}
+/* Unordered lists */
+ul {
+    padding: 0;
+    margin: 0;
     list-style: none;
 }
-ol {}
-ol li {}
-ul {}
-ul li {}
-dd {}
-dl dt {}
-dl dd {}
-
-/**
- * Anchors
- */
-a {
-    color: $color-primary;
-    text-decoration: none;
+ol li {
+    font-size: var(--type-base);
 }
-a:link {}
-a:hover {
+/* Definition lists */
+dl {
+    margin: 0;
 }
-a:focus {
-    outline: 0;
-    color: color($color-primary blackness(+10%));
+dl > dt {
+    font-size: var(--type-base);
 }
-a:visited {}
-
-/**
- * Typographic details
- */
-hr {}
-em {}
-b, strong {
-    font-weight: bold
+dl > dd {
+    font-size: var(--type-base);
+    margin: 0;
 }
-address {}
-small {}
+/* Quotes */
+blockquote {
+    margin: 0;
+}
+cite {
+    font-style: normal;
+}
+/* Address */
+address {
+    font-style: normal;
+}
+/* Preformatted text */
 pre {}
 code {}
+/* Subscript and superscript */
 sub {}
 sup {}
-strike {}
+/* Abbreviations */
+abbr {}
+/* Small copy */
+small {}
+/* Strong copy */
+strong {
+    font-weight: var(--type-bold);
+}
+/* Figure */
+figure {
+    margin: 0;
+}
+figure > figcaption {}
+/* HR */
+hr {
+    border: 0;
+    border-top: 1px solid color(black a(0.1));
+    padding-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}

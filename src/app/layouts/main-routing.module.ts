@@ -16,7 +16,7 @@ import { HomeRoute } from 'routes/main';
                 data: {},
                 children: [
                     {
-                        path: 'home',
+                        path: 'main',
                         component: HomeRoute
                     },
                     { path: '**', component: NoContentRoute },

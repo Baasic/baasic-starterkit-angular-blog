@@ -1,27 +1,14 @@
-<section class="container container--sml spc--top--xlrg">
-  <div class="card">
-    <h1 class="type--medium spc--bottom--med">Login</h1>
-    <form [formGroup]="form" novalidate (ngSubmit)="login()">
-      <div class="spc--bottom--sml">
-        <input type="text" class="input input--text input--med" name="username" placeholder="Username" formControlName="username"
-        />
-        <span *ngIf="!form.controls.username.valid && form.controls.username.dirty">Required</span>
-      </div>
+<section>
+    <div class="layout__form">
+        <a href="javascript:void(0);" class="btn btn--secondary btn--med spc--bottom--lrg rounded">Home</a>
+    </div>
 
-      <div class="spc--bottom--med">
-        <input type="password" class="input input--text input--med" name="password" placeholder="Password" formControlName="password"
-        />
-        <span *ngIf="!form.controls.password.valid && form.controls.password.dirty">Required</span>
-      </div>
-
-      <div class="spc--bottom--med">
-        <p class="type--small type--warning">{{errorMessage}}</p>
-      </div>
-
-      <div class="group">
-        <button type="submit" class="pull btn btn--primary btn--med">Log in</button>
-        <a href="javacript:void(0); " class="push type--small spc--top--sml " [routerLink]="[ '/forgot-password'] ">Forgot your password?</a>
-      </div>
-    </form>
-  </div>
+    <div class="layout__form login">
+	    <div class="login--half spc--bottom--sml">
+	        <baasic-login></baasic-login>
+	    </div>
+	    <div class="login--half">
+	        <baasic-social-login></baasic-social-login>
+	    </div>
+    </div>
 </section>

@@ -17,7 +17,7 @@ export class LoginService {
         let data = {
             username: username,
             password: password,
-            options: ['sliding']
+            options: ['session', 'sliding']
         };
         var token = await this.membershipService.login.login(data);
     }

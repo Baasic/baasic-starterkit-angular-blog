@@ -13,7 +13,7 @@ import { LoginRoute, SignUpRoute } from 'routes/public';
                 component: PublicLayout,
                 children: [
                     // temporary workaround - empty path is recognized only in first imported routing module
-                    //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+                    //{ path: '', redirectTo: '/main', pathMatch: 'full' },
                     { path: 'login', component: LoginRoute },
                     { path: 'signup', component: SignUpRoute }
                 ]

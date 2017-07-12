@@ -48,7 +48,7 @@ type StoreType = {
     HttpModule,
     MtLayoutsModule,
     RouterModule.forRoot(ROUTES, { useHash: false }),
-    BaasicApp.forRoot('clokke-dev', {})
+    BaasicApp.forRoot('test-aplikacija', {})
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

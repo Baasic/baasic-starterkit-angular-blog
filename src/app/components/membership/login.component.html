@@ -1,0 +1,32 @@
+<section class="container container--sml spc--top--xlrg">
+    <h1 class="spc--bottom--lrg">Login</h1>
+    <form class="form" name="login" [formGroup]="form" novalidate (ngSubmit)="submitLogin()">
+        <div class="cf">
+             <div class="form__field--full">
+                <label class="form__label">Username</label>
+                <input class="input input--text" type="text" name="username" formControlName="username" name="username" required placeholder="Enter your email or username" />
+                <div>
+                    <span class="alert alert--warning"  *ngIf="!form.controls.username.valid && form.controls.username.dirty">Username is required.</span>
+                </div>
+            </div>
+
+            <div class="form__field--full">
+                <label>Password</label>
+                <input class="input input--text" type="password" name="password" ng-model="password" name="password" placeholder="Password" autocomplete="off" formControlName="password"/>
+                <div>
+                 <span *ngIf="!form.controls.password.valid && form.controls.password.dirty">Password is required.</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn--primary btn--med rounded" type="submit" [disabled]="logging">Login</button>
+        <div>
+            <span *ngIf="loginError">
+                {{loginError}}
+            </span>
+        </div>
+        <div class="spc--top--sml">
+            <a class="login__retreive">Forgot Your Password? Recover Your Password Here!</a>
+        </div>
+    </form>
+</section>
