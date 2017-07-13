@@ -4,7 +4,7 @@ import { MtCommonModule } from 'common';
 import { CanActivateGuard } from 'common/security';
 import { MainLayout } from 'layouts';
 import { NoContentRoute } from 'routes';
-import { NewBlogPostRoute } from 'routes/main';
+import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/main';
 
 
 @NgModule({
@@ -20,6 +20,11 @@ import { NewBlogPostRoute } from 'routes/main';
                         path: 'new-blog-post',
                         canActivate: [CanActivateGuard],
                         component: NewBlogPostRoute
+                    },
+                    {
+                        path: 'blog-post/edit/:slug',
+                        canActivate: [CanActivateGuard],
+                        component: EditBlogPostRoute
                     },
                     { path: '**', component: NoContentRoute },
                 ]

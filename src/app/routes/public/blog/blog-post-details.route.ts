@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IArticle } from 'baasic-sdk-angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoaderService } from 'common';
-import { BlogService } from 'common/data';
+import { BlogService, IBlog } from 'common/data';
 import { IBlogUser, UserService } from 'common/security';
 
 @Component({
@@ -12,7 +11,7 @@ import { IBlogUser, UserService } from 'common/security';
 
 export class BlogPostDetailsRoute implements OnInit {
 
-    blog: IArticle;
+    blog: IBlog;
     user: IBlogUser;
     authorId: string;
 
@@ -22,7 +21,8 @@ export class BlogPostDetailsRoute implements OnInit {
         private route: ActivatedRoute,
         private blogService: BlogService,
         private userService: UserService,
-        private loaderService: LoaderService
+        private loaderService: LoaderService,
+        private router: Router
     ) { }
 
     async ngOnInit(): Promise<void> { 
@@ -35,9 +35,13 @@ export class BlogPostDetailsRoute implements OnInit {
 
         this.authorId = this.blog.authorId;
         this.content = this.blog.content;
-        
+
         this.user = await this.userService.getUser();
 
         this.loaderService.resume();
+    }
+
+    editBlog(): void {
+        this.router.navigate(['/blog-post/edit', this.blog.slug]);
     }
 }

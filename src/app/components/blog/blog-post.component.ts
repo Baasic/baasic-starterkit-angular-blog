@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { MembershipService } from 'baasic-sdk-angular';
+import { IArticle, MembershipService } from 'baasic-sdk-angular';
 import { BlogService } from 'common/data';
 
 @Component({
     selector: 'baasic-blog-post',
     templateUrl: 'blog-post.component.html'
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent implements OnInit, OnChanges {
     @Input('isNew') isNew: boolean = true;
+    @Input('blog') blog: IArticle; 
     @Output('onSave') saveEvent: EventEmitter<void> = new EventEmitter<void>();
     @Output('onCancel') cancelEvent: EventEmitter<void> = new EventEmitter<void>();
 
@@ -28,7 +29,28 @@ export class BlogPostComponent implements OnInit {
 
     ngOnInit(): void  {
         this.detectContentChange();
-     }
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (!this.isNew) {
+            if (changes.blog.currentValue) {
+                let blog = changes.blog.currentValue;
+                
+                let form: any = {
+                    title: new FormControl(blog.title, Validators.required),
+                    featured: new FormControl(blog.featured, Validators.required),
+                    excerpt: new FormControl(blog.excerpt),
+                    content: new FormControl(blog.content, Validators.required),
+                    allowComments: new FormControl(blog.allowComments),
+                    hideComments: new FormControl(blog.hideComments),
+                };
+
+                this.content = blog.content;
+
+                this.form = new FormGroup(form);
+            }
+        } 
+    }
 
     private createForm(): void {
         let form: any = {
@@ -112,7 +134,14 @@ export class BlogPostComponent implements OnInit {
                     await this.blogService.create(blog);
                     this.saveEvent.emit();
                 } else {
-                    await this.blogService.update(blog);
+                    this.blog.title = blog.title;
+                    this.blog.featured = blog.featured;
+                    this.blog.excerpt = blog.excerpt;
+                    this.blog.content = blog.content;
+                    this.blog.allowComments = blog.allowComments;
+                    this.blog.hideComments = blog.hideComments;
+                    
+                    await this.blogService.update(this.blog);
                 }
             } catch(exception) {
                 this.error = exception.data.message;

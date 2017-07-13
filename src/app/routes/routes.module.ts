@@ -6,7 +6,7 @@ import { MarkdownModule } from 'angular2-markdown';
 import { MtCommonModule } from 'common';
 import { MtComponentsModule } from 'components';
 import { NoContentRoute } from 'routes';
-import { NewBlogPostRoute } from 'routes/main';
+import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/main';
 import { 
     HomeRoute, 
     LoginRoute, 
@@ -33,7 +33,8 @@ import {
         NoContentRoute,
         BlogPostDetailsRoute,
         // main
-        NewBlogPostRoute
+        NewBlogPostRoute,
+        EditBlogPostRoute
     ],
     exports: [
         HomeRoute,
@@ -41,6 +42,7 @@ import {
         SignUpRoute,
         NoContentRoute,
         NewBlogPostRoute,
+        EditBlogPostRoute,
         BlogPostDetailsRoute
     ]
 })

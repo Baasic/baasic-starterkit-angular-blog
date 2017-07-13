@@ -57,27 +57,27 @@ export class BlogService {
         return (await this.articleService.articles.find(findOptions)).data;
     }
 
-    async create(blog: IArticle): Promise<IArticle> {
+    async create(blog: IBlog): Promise<IBlog> {
         let blogToCreate = this.utilityService.copyObject({}, blog);
 
         blogToCreate.isBlog = 1;
 
-        return (await this.articleService.articles.create(blogToCreate)).data;
+        return (await this.articleService.articles.create(blogToCreate)).data as IBlog;
     }
 
-    async update(blog: IArticle): Promise<void> {
+    async update(blog: IBlog): Promise<void> {
         return (await this.articleService.articles.update(blog)).data;
     }
 
-    async remove(blog: IArticle): Promise<void> {
+    async remove(blog: IBlog): Promise<void> {
         return (await this.articleService.articles.remove(blog)).data;
     }
 
-    async unpublish(blog: IArticle): Promise<void> {
+    async unpublish(blog: IBlog): Promise<void> {
         return (await this.articleService.articles.unpublish(blog)).data;
     }
 
-    async publish(blog: IArticle, options: IArticleOptions): Promise<void> {
+    async publish(blog: IBlog, options: IArticleOptions): Promise<void> {
         return (await this.articleService.articles.publish(blog, options)).data;
     }
 
@@ -156,4 +156,13 @@ export interface IBlogStatus {
     draft: number;
     published: number;
     archived: number;
+}
+
+export interface IBlog extends IArticle {
+    title: string;
+    featured: string;
+    excerpt?: string;
+    content: string;
+    allowComments: boolean;
+    hideComments: boolean;
 }

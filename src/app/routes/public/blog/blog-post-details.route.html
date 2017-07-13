@@ -35,3 +35,4 @@
 </article>
 <!--<baasic-blog-edit ng-show="isEdit" blog="blog" on-save="blogSaved()" on-cancel="cancelEdit()">
 </baasic-blog-edit>-->
+<baasic-blog-post *ngIf="isEdit" [blog]="blog" (onSave)="blogSaved()" (onCancel)="cancelEdit()"></baasic-blog-post>
