@@ -5,7 +5,7 @@
         [ngClass]=" { 'article--lrg': first , 'article--sml': !first } ">
         <div class="article__holder">
             <figure class="article__figure">
-                <a ui-sref="master.blog-detail({ slug: blog.slug })"><img [src]="blog.featured" alt="Test photo"></a>
+                <a href="javascript:void(0)" [routerLink]="['/blog-post', blog.slug]"><img [src]="blog.featured" alt="Test photo"></a>
             </figure>
             <div class="article__content">
                 <header class="article__header">
