@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LoaderService } from 'common';
 import { BlogService } from 'common/data';
-import { IBlogUser } from 'routes/main';
+import { IBlogUser } from 'common/security';
 
 @Component({
     selector: 'baasic-blog-list',
     templateUrl: 'blog-list.component.html'
 })
-
 export class BlogListComponent implements OnInit {
     
     @Input('pageSize') pageSize: number = 10;
@@ -16,10 +16,17 @@ export class BlogListComponent implements OnInit {
     public hasBlogs: boolean = true;
     public pagerDate: any;
     
-    constructor(private blogService: BlogService) { }
+    constructor(
+        private blogService: BlogService,
+        private loaderService: LoaderService
+    ) { }
 
     async ngOnInit(): Promise<void> { 
+        this.loaderService.suspend();
+        
         await this.loadBlogs();
+
+        this.loaderService.resume();
     }
 
     async loadBlogs(): Promise<void> {

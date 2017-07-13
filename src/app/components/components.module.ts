@@ -8,9 +8,11 @@ import { MtCommonModule } from 'common';
 import { 
     BlogListComponent,
     BlogPostComponent,
+    LoaderComponent,
     LoginComponent, 
     LogoutComponent,
     MarkdownSyntaxHighlightComponent,
+    ProfileComponent,
     SidebarComponent,
     SocialLoginComponent 
 } from 'components';
@@ -27,18 +29,22 @@ import {
     declarations: [
         BlogListComponent,
         BlogPostComponent,
+        LoaderComponent,
         LoginComponent,
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
+        ProfileComponent,
         SidebarComponent,
         SocialLoginComponent
     ],
     exports: [
         BlogListComponent,
         BlogPostComponent,
+        LoaderComponent,
         LoginComponent,
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
+        ProfileComponent,
         SidebarComponent,
         SocialLoginComponent
     ],

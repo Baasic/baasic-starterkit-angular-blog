@@ -5,10 +5,15 @@ import { RouterModule } from '@angular/router';
 import { 
     ErrorService, 
     HttpService, 
+    LoaderService,
     UserEventingService, 
     UtilityService 
 } from 'common';
-import { BlogService, ResourceService} from 'common/data';
+import { 
+    BlogService, 
+    ProfileService,
+    ResourceService 
+} from 'common/data';
 import { 
     CanActivateGuard, 
     LoginService, 
@@ -29,10 +34,12 @@ import { SharedModule } from 'shared';
         //common
         ErrorService,
         HttpService,
+        LoaderService,
         UserEventingService,
         UtilityService,
         //common/data
         BlogService,
+        ProfileService,
         //common/security
         CanActivateGuard,
         LoginService,
