@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BaasicAppService, IUser } from 'baasic-sdk-angular';
 import { Subscription } from 'rxjs/Subscription';
 import { UserEventingService, UtilityService } from 'common';
+import { IBlogUser, UserService } from 'common/security';
 
 @Component({
     selector: 'home-route',
@@ -11,15 +12,21 @@ export class HomeRoute implements OnInit, OnDestroy {
 
     private user: IBlogUser;
     private userEventingSubscription: Subscription = null;
+    messageClosed: boolean = false;
 
     constructor(
         private baasicAppService: BaasicAppService,
         private userEventingService: UserEventingService,
-        private utilityService: UtilityService
+        private utilityService: UtilityService,
+        private userService: UserService
     ) {}
 
+    toggleMessage(): void {
+        this.messageClosed = !this.messageClosed;
+    }
+
     async ngOnInit(): Promise<void> { 
-        await this.init();
+        this.user = await this.userService.getUser();
 
         this.userEventingSubscription = this.userEventingService.logoutEventing$.subscribe(() => {
             this.setEmptyUser();
@@ -32,38 +39,7 @@ export class HomeRoute implements OnInit, OnDestroy {
         }
     }
 
-    private async init(): Promise<void> {
-        let token = this.baasicAppService.getAccessToken();
-        let userDetails;
-        if (token) {
-            userDetails = (await this.baasicAppService.membershipModule.login.loadUserData({})).data;
-        } 
-
-        let user;
-        if (userDetails != null) {
-            user = {
-                isAuthenticated: true,
-                isAdmin: userDetails.roles.indexOf('isAdministrator') !== -1
-            };
-
-            this.utilityService.extendObject(user, userDetails);
-        } else {
-            user = {
-                isAuthenticated: false
-            };
-        }
-
-        this.user = user;
-    }
-
     setEmptyUser(): void {
-        this.user = {
-            isAuthenticated: false
-        };
+        this.userService.setEmptyUser();
     }   
-}
-
-export interface IBlogUser extends IUser {
-    isAuthenticated: boolean;
-    isAdmin?: boolean;
 }

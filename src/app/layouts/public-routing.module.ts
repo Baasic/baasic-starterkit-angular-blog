@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { PublicLayout } from 'layouts';
-import { HomeRoute, LoginRoute, SignUpRoute } from 'routes/public';
+import { 
+    HomeRoute, 
+    LoginRoute, 
+    SignUpRoute,
+    BlogPostDetailsRoute
+ } from 'routes/public';
 
 @NgModule({
     imports: [
@@ -16,7 +21,8 @@ import { HomeRoute, LoginRoute, SignUpRoute } from 'routes/public';
                     { path: '', redirectTo: '/main', pathMatch: 'full' },
                     { path: 'main', component: HomeRoute},
                     { path: 'login', component: LoginRoute },
-                    { path: 'signup', component: SignUpRoute }
+                    { path: 'signup', component: SignUpRoute },
+                    { path: 'blog-post/:slug', component: BlogPostDetailsRoute }
                 ]
             }
         ])

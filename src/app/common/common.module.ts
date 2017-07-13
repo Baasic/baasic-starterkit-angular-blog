@@ -2,9 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { ErrorService, HttpService, UserEventingService, UtilityService } from 'common';
+import { 
+    ErrorService, 
+    HttpService, 
+    UserEventingService, 
+    UtilityService 
+} from 'common';
 import { BlogService, ResourceService} from 'common/data';
-import { CanActivateGuard, LoginService, SignUpService } from 'common/security';
+import { 
+    CanActivateGuard, 
+    LoginService, 
+    SignUpService,
+    UserService
+ } from 'common/security';
 import { SharedModule } from 'shared';
 
 
@@ -26,7 +36,8 @@ import { SharedModule } from 'shared';
         //common/security
         CanActivateGuard,
         LoginService,
-        SignUpService
+        SignUpService,
+        UserService
     ]
 })
 export class MtCommonModule { }

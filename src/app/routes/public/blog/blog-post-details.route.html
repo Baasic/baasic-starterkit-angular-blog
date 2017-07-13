@@ -1,0 +1,37 @@
+<article class="post" [hidden]="isEdit">
+    <header class="post__header" [ngStyle]="{ 'background-image': blog?.featured ? 'url(' + blog?.featured + ')' : 'none' }">
+        <div class="post__header__container">
+            <a class="btn btn--inverse btn--med rounded spc--bottom--med" href="javascript:void(0);" [routerLink]="['/main']" rel="home">Back</a>
+            <h2 class="post__title">{{ blog?.title }}</h2>
+            <span class="post__header__overlay"></span>
+        </div>
+    </header>
+    <div class="post__body">
+        <div class="group spc--bottom--med">
+            <p class="post__time pull">{{ blog?.dateUpdated | date : 'medium' }}</p>
+            <span class="post__time push">{{ blog?.readingTime.text }}</span>
+        </div>
+        <div class="styledtext">
+            <markdown [data]="content"></markdown>
+        </div>
+        <ul class="post__tags tags group">
+            <li *ngFor="let tag of blog?.tags" class="tags__item">
+                <a class="tags__link" ui-sref="master.main.blog-search({ tags: tag.slug })">{{ tag.tag }}</a>
+            </li>
+        </ul>
+        <!--<baasic-profile author-id="authorId"></baasic-profile>-->
+        <hr>
+        <span ng-hide="isEdit">
+            <span *ngIf="user?.isAuthenticated" class="push">
+                <button type="button" class="btn btn--primary btn--med rounded" (click)="editBlog()">Edit</button>
+                <button type="button" class="btn btn--light btn--med rounded" (click)="deleteBlog()">Delete</button>
+            </span>
+        </span>
+        <button type="button" class="btn btn--light btn--med rounded" href="javascript:void(0);" [routerLink]="['/main']" rel="home">Back</button>
+        <div class="spc--top--med">
+            <!--<blog-comments article-id='blog.id' blog='blog' ng-if="!blog.hideComments"></blog-comments>-->
+        </div>
+    </div>
+</article>
+<!--<baasic-blog-edit ng-show="isEdit" blog="blog" on-save="blogSaved()" on-cancel="cancelEdit()">
+</baasic-blog-edit>-->

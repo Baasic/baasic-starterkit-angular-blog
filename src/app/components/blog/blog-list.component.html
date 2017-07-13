@@ -20,7 +20,7 @@
 
                 <div class="article__info">
                     <div class="article__readmore">
-                        <a ui-sref="master.blog-detail({ slug: blog.slug })" class="btn btn--light btn--med rounded">Read more</a>
+                        <a href="javascript:void(0)" [routerLink]="['/blog-post', blog.slug]" class="btn btn--light btn--med rounded">Read more</a>
                         <a *ngIf="user?.isAuthenticated" ui-sref="master.blog-edit({ slug: blog.slug })" class="btn btn--light btn--med rounded">Edit</a>
                     </div>
                     <span class="article__readingtime">{{ blog.readingTime.text }}</span>

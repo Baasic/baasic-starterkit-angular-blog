@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { MembershipService } from 'baasic-sdk-angular';
+import { BlogService } from 'common/data';
 
 @Component({
     selector: 'baasic-blog-post',
@@ -11,12 +13,16 @@ export class BlogPostComponent implements OnInit {
     @Output('onCancel') cancelEvent: EventEmitter<void> = new EventEmitter<void>();
 
     private viewMode: string = 'markdown';
+    private error: string;
 
     form: FormGroup;
 
     content: string = '';
 
-    constructor() { 
+    constructor(
+        private membershipService: MembershipService,
+        private blogService: BlogService
+    ) { 
         this.createForm();
     }
 
@@ -94,6 +100,27 @@ export class BlogPostComponent implements OnInit {
 
     async saveBlog(): Promise<void> {
         let blog = this.form.getRawValue();
-        console.log(blog);
+
+        if (blog) {
+            blog.readingTime = this.readingTime(blog.content);
+            let user = this.membershipService.login.loadUserData({});
+            blog.authorName = user.displayName;
+
+            try {
+                if (this.isNew) {
+                    blog.status = this.blogService.blogStatus.published;
+                    await this.blogService.create(blog);
+                    this.saveEvent.emit();
+                } else {
+                    await this.blogService.update(blog);
+                }
+            } catch(exception) {
+                this.error = exception.data.message;
+            }
+        }
+    }
+
+    cancelEdit(): void {
+        this.cancelEvent.emit();
     }
 }

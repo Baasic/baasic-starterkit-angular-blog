@@ -20,6 +20,15 @@ export class BlogService {
         private utilityService: UtilityService
     ) { }
 
+
+    get blogStatus(): IBlogStatus {
+        return {
+            draft: 1,
+            published: 2,
+            archived: 4
+        };
+    }
+
     async get(id: string, options: IArticleSearchOptions): Promise<IArticle> {
         return (await this.articleService.articles.get(id, options)).data;
     }
@@ -141,4 +150,10 @@ export interface IArticleSearchOptions extends IOptions {
     tags?: string[];
     startDate?: string;
     endDate?: string;
+}
+
+export interface IBlogStatus {
+    draft: number;
+    published: number;
+    archived: number;
 }
