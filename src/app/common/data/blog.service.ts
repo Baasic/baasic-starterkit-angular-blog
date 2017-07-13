@@ -29,8 +29,8 @@ export class BlogService {
         };
     }
 
-    async get(id: string, options: IArticleSearchOptions): Promise<IArticle> {
-        return (await this.articleService.articles.get(id, options)).data;
+    async get(id: string, options: IArticleSearchOptions): Promise<IBlog> {
+        return (await this.articleService.articles.get(id, options)).data as IBlog;
     }
 
     async find(options: IArticleSearchOptions): Promise<IBaasicQueryModel<IArticle>> {

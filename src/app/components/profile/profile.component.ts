@@ -7,7 +7,7 @@ import { ProfileService } from 'common/data';
     template: `
         <hr />
         <div>
-            <h3><a ui-sref="master.main.author({authorId: authorId})" class="author__title--secondary">{{ profile?.displayName }}</a></h3>
+            <h3><a href="javascript:void(0)" [routerLink]="['/author', authorId]" class="author__title--secondary">{{ profile?.displayName }}</a></h3>
             <p class="spc--top--tny author__content">{{ profile?.aboutMySelf }}</p>
         </div>
     `

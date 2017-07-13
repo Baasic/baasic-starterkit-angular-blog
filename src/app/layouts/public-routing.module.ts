@@ -19,7 +19,6 @@ import {
                 children: [
                     // temporary workaround - empty path is recognized only in first imported routing module
                     { path: '', redirectTo: '/main', pathMatch: 'full' },
-                    { path: 'main', component: HomeRoute},
                     { path: 'login', component: LoginRoute },
                     { path: 'signup', component: SignUpRoute },
                     { path: 'blog-post/:slug', component: BlogPostDetailsRoute }

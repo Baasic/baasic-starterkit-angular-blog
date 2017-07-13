@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { BaasicAppService, IHttpResponse, MembershipService } from 'baasic-sdk-angular';
 import { Observable } from 'rxjs/Observable';
-import { LoginService } from 'common/security';
+import { LoginService, UserService } from 'common/security';
 import { TokenService } from 'shared';
 
 @Component({
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
         private baasicAppService: BaasicAppService,
         private membershipService: MembershipService,
         public router: Router,
-        private tokenService: TokenService
+        private tokenService: TokenService,
+        private userService: UserService
     ) {
         this.createForm();
     }
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
             await this.membershipService.login.login(data) as IHttpResponse<any>;
 
             try {
+                await this.userService.setUser();
                 let data = (await this.membershipService.login.loadUserData({})).data;
                 this.baasicAppService.setUser(data);
             } catch(err) {

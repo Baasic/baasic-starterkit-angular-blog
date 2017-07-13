@@ -13,6 +13,7 @@ import {
     LogoutComponent,
     MarkdownSyntaxHighlightComponent,
     ProfileComponent,
+    ProfileDetailComponent,
     SidebarComponent,
     SocialLoginComponent 
 } from 'components';
@@ -34,6 +35,7 @@ import {
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
         ProfileComponent,
+        ProfileDetailComponent,
         SidebarComponent,
         SocialLoginComponent
     ],
@@ -45,6 +47,7 @@ import {
         LogoutComponent,
         MarkdownSyntaxHighlightComponent,
         ProfileComponent,
+        ProfileDetailComponent,
         SidebarComponent,
         SocialLoginComponent
     ],

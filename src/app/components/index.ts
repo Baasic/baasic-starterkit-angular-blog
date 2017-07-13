@@ -6,5 +6,6 @@ export * from './membership/social-login.component';
 export * from './blog/blog-list.component';
 export * from './blog/markdown-syntax-highlight.component';
 export * from './profile/profile.component';
+export * from './profile/profile-detail.component';
 export * from './blog/blog-post.component';
 export * from './components.module';

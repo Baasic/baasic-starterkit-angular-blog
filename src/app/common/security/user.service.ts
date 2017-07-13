@@ -12,6 +12,28 @@ export class UserService {
         private utilityService: UtilityService
     ) { }
 
+    async setUser(): Promise<IBlogUser> {
+        let userDetails = (await this.baasicAppService.membershipModule.login.loadUserData({})).data;
+        
+        let user;
+        if (userDetails != null) {
+            user = {
+                isAuthenticated: true,
+                isAdmin: userDetails.roles.indexOf('isAdministrator') !== -1
+            };
+
+            this.utilityService.extendObject(user, userDetails);
+        } else {
+            user = {
+                isAuthenticated: false
+            };
+        }
+
+        localStorage.setItem(this.storageKey, JSON.stringify(user));
+
+        return user;
+    }
+
     async getUser(): Promise<IBlogUser> {
         let token = this.baasicAppService.getAccessToken();
         let userDetails;
@@ -20,23 +42,7 @@ export class UserService {
             if (user) {
                 return JSON.parse(user);
             } else {
-                userDetails = (await this.baasicAppService.membershipModule.login.loadUserData({})).data;
-
-                let user;
-                if (userDetails != null) {
-                    user = {
-                        isAuthenticated: true,
-                        isAdmin: userDetails.roles.indexOf('isAdministrator') !== -1
-                    };
-
-                    this.utilityService.extendObject(user, userDetails);
-                } else {
-                    user = {
-                        isAuthenticated: false
-                    };
-                }
-
-                localStorage.setItem(this.storageKey, JSON.stringify(user));
+                let user = await this.setUser();
 
                 return user;
             }

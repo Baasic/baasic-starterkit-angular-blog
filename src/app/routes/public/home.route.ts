@@ -12,7 +12,6 @@ export class HomeRoute implements OnInit, OnDestroy {
 
     private user: IBlogUser;
     private userEventingSubscription: Subscription = null;
-    messageClosed: boolean = false;
 
     constructor(
         private baasicAppService: BaasicAppService,
@@ -20,10 +19,6 @@ export class HomeRoute implements OnInit, OnDestroy {
         private utilityService: UtilityService,
         private userService: UserService
     ) {}
-
-    toggleMessage(): void {
-        this.messageClosed = !this.messageClosed;
-    }
 
     async ngOnInit(): Promise<void> { 
         this.user = await this.userService.getUser();
