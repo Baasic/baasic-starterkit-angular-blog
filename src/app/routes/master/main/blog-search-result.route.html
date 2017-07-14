@@ -1,0 +1,23 @@
+<div class="layout__form">
+    <h2 class="spc--bottom--lrg">Search results</h2>
+    <div class="search__result" *ngFor="let blog of blogList">
+        <span class="search__date">{{ blog?.publishDate | date : 'medium' }}</span>
+        <h3 class="article__title"><a href="javascript:void(0)" [routerLink]="['/blog-post', blog?.slug]">{{ blog?.title }}</a></h3>
+
+        <p class="article__summary__text">
+            {{ blog?.excerpt }}
+        </p>
+    </div>
+
+    <article *ngIf="!hasBlogs">
+        <p class="article__summary__text spc--bottom--med">Nothing found.</p>
+    </article>
+
+    <!--<div [hidden]="!pagerInfo.hasPrevious && !pagerInfo.hasNext">
+        <button type="button" [hidden]="!pagerInfo.hasPrevious" (click)="prevPage()">Prev</button>
+        <button type="button" [hidden]="!pagerInfo.hasNext" (click)="nextPage()">Next</button>
+    </div>-->
+
+    <hr>
+    <a class="btn btn--light btn--med rounded spc--bottom--med" href="javascript:void(0);" [routerLink]="['/main']" rel="home">Back</a>
+</div>

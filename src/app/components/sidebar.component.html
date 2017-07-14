@@ -4,8 +4,8 @@
             <header role="banner" class="header">
                 <div class="header__controls">
                     <div class="search">
-                        <form name="searchForm" novalidate (ngSubmit)="searchBlog()">
-                            <input name="search" class="input--search" placeholder="Search..." type="search" [(ngModel)]="searchFor" />
+                        <form name="searchForm" [formGroup]="searchForm" novalidate (ngSubmit)="searchBlog()">
+                            <input name="search" class="input--search" placeholder="Search..." type="search" formControlName="searchFor" />
 
                             <button type="submit" class="btn--search"></button>
                         </form>
@@ -22,7 +22,7 @@
                 <h2 class="sidebar__title">Recent Tags</h2>
                     <ul class="tags group">
                         <li class="tags__item" *ngFor="let tag of tags">
-                            <a ui-sref="master.main.blog-search({ tags: tag.slug })" class="tags__link " title="{{ tag.tag }}">{{ tag.tag }}</a>
+                            <a href="javascript:void(0);" (click)="searchTags(tag)" class="tags__link " title="{{ tag.tag }}">{{ tag.tag }}</a>
                         </li>
                     </ul>
             </nav>

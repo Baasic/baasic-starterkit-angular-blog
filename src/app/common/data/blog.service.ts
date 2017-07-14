@@ -33,7 +33,7 @@ export class BlogService {
         return (await this.articleService.articles.get(id, options)).data as IBlog;
     }
 
-    async find(options: IArticleSearchOptions): Promise<IBaasicQueryModel<IArticle>> {
+    async find(options: IArticleSearchOptions): Promise<IBaasicQueryModel<IBlog>> {
         let findOptions;
         if (options) {
             findOptions = this.utilityService.copyObject({}, options);
@@ -54,7 +54,7 @@ export class BlogService {
 
         findOptions.searchQuery = searchQuery;
 
-        return (await this.articleService.articles.find(findOptions)).data;
+        return (await this.articleService.articles.find(findOptions)).data as IBaasicQueryModel<IBlog>;
     }
 
     async create(blog: IBlog): Promise<IBlog> {

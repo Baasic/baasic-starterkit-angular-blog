@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaasicAppService, IArticleTag } from 'baasic-sdk-angular';
 import { UtilityService } from 'common';
@@ -14,12 +15,16 @@ export class SidebarComponent implements OnInit {
     private user: any;
     private tags: IArticleTag[] = [];
 
+    searchForm: FormGroup;
+
     constructor(
         private baasicAppService: BaasicAppService,
         private blogService: BlogService,
         private utilityService: UtilityService,
         private router: Router
-    ) { }
+    ) { 
+        this.createSearchForm();
+    }
 
     async ngOnInit(): Promise<void> { 
         let token = this.baasicAppService.getAccessToken();
@@ -47,6 +52,12 @@ export class SidebarComponent implements OnInit {
         this.tags = (await this.blogService.tags.find({ pageSize: 10 })).item;
     }
 
+    private createSearchForm(): void {
+        this.searchForm = new FormGroup({
+            searchFor: new FormControl(null, Validators.required)
+        });
+    }
+
     newBlogPost(): void {
         this.router.navigate(['/new-blog-post']);
     }
@@ -55,5 +66,15 @@ export class SidebarComponent implements OnInit {
         this.user = {
             isAuthenticated: false
         };
+    }
+
+    searchBlog(): void {
+        let formData = this.searchForm.getRawValue();
+
+        this.router.navigate(['/blog-search', { search: formData.searchFor }]);
+    }
+
+    searchTags(tag: IArticleTag): void {
+        this.router.navigate(['/blog-search', { tags: tag.slug }]);
     }
 }

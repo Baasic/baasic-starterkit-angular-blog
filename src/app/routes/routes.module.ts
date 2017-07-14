@@ -7,7 +7,7 @@ import { MtCommonModule } from 'common';
 import { MtComponentsModule } from 'components';
 import { NoContentRoute } from 'routes';
 import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/master';
-import { ProfileDetailRoute } from 'routes/master/main';
+import { ProfileDetailRoute, BlogSearchResultRoute } from 'routes/master/main';
 import { 
     HomeRoute, 
     LoginRoute, 
@@ -36,7 +36,8 @@ import {
         // main
         NewBlogPostRoute,
         EditBlogPostRoute,
-        ProfileDetailRoute
+        ProfileDetailRoute,
+        BlogSearchResultRoute
     ],
     exports: [
         HomeRoute,
@@ -45,7 +46,8 @@ import {
         NoContentRoute,
         NewBlogPostRoute,
         EditBlogPostRoute,
-        BlogPostDetailsRoute
+        BlogPostDetailsRoute,
+        BlogSearchResultRoute
     ]
 })
 export class MtRoutesModule { }
