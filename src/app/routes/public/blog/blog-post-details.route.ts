@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IArticleTag } from 'baasic-sdk-angular';
 import { LoaderService } from 'common';
 import { BlogService, IBlog } from 'common/data';
 import { IBlogUser, UserService } from 'common/security';
@@ -43,5 +44,9 @@ export class BlogPostDetailsRoute implements OnInit {
 
     editBlog(): void {
         this.router.navigate(['/blog-post/edit', this.blog.slug]);
+    }
+
+    searchTags(tag: IArticleTag): void {
+        this.router.navigate(['/blog-search', { tags: tag.slug }]);
     }
 }

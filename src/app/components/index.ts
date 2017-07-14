@@ -1,5 +1,6 @@
 ﻿export * from './loader/loader.component';
 export * from './utility/gravatar.directive';
+export * from './utility/pagination.component';
 export * from './membership/logout.component';
 export * from './sidebar.component';
 export * from './membership/login.component';

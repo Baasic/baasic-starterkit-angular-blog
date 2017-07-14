@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { LoaderService } from 'common';
 import { BlogService } from 'common/data';
 import { IBlogUser } from 'common/security';
@@ -7,38 +10,47 @@ import { IBlogUser } from 'common/security';
     selector: 'baasic-blog-list',
     templateUrl: 'blog-list.component.html'
 })
-export class BlogListComponent implements OnInit {
+export class BlogListComponent implements OnInit, OnDestroy {
     
     @Input('pageSize') pageSize: number = 10;
     @Input('user') user: IBlogUser;
 
     public blogList: any;
     public hasBlogs: boolean = true;
-    public pagerDate: any;
+    public pagerData: any;
+
+    public paramsSubscription: Subscription;
     
     constructor(
         private blogService: BlogService,
-        private loaderService: LoaderService
+        private loaderService: LoaderService,
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     async ngOnInit(): Promise<void> { 
-        this.loaderService.suspend();
-        
-        await this.loadBlogs();
-
-        this.loaderService.resume();
+        this.paramsSubscription = this.route.paramMap.subscribe(async (params: ParamMap) => {
+            const page = +params.get('page');
+            await this.loadBlogs(page);
+        });
     }
 
-    async loadBlogs(): Promise<void> {
+    ngOnDestroy(): void {
+        this.paramsSubscription.unsubscribe();
+    }
+
+    async loadBlogs(page: number): Promise<void> {
+        this.loaderService.suspend();
+
         let blogList = await this.blogService.find({
             statuses: ['published'],
-            pageNumber: 1,
+            pageNumber: page || 1,
             pageSize: this.pageSize,
             orderBy: 'publishDate',
             orderDirection: 'desc'
         });
 
-        this.pagerDate = {
+        this.pagerData = {
             currentPage: blogList.page,
             pageSize: blogList.recordsPerPage,
             totalRecords: blogList.totalRecords
@@ -47,5 +59,15 @@ export class BlogListComponent implements OnInit {
         this.blogList = blogList;
             
         this.hasBlogs = blogList.totalRecords > 0;
+
+        this.loaderService.resume();
+    }
+
+    async prev(): Promise<void> {
+        this.router.navigate(['/main', { page: this.pagerData.currentPage - 1 }]);
+    }
+
+    async next(): Promise<void> {
+        this.router.navigate(['/main', { page:  this.pagerData.currentPage + 1 }]);
     }
 }
