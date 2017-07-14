@@ -7,22 +7,22 @@
                     <label class="form__label comment__label" for="author">Name:<br/><small>({{128-comments?.author?.length}} characters left)</small></label>
                     <input type="text" name="author" id="author" formControlName="author" maxlength="128" class="input input--text input--med comment__input" />
                 </div>
-                <p class="alert alert--warning" *ngIf="form?.author?.touched && form?.author?.error?.required">Name is required.</p>
+                <p class="alert alert--warning" *ngIf="form?.controls?.author?.dirty && form?.controls?.author?.errors?.required">Name is required.</p>
             </div>
             <div class="form__field">
                 <div class="comment__layout">
                     <label class="form__label comment__label" for="email">Email address:</label>
                     <input type="email" name="email" id="email" formControlName="email" class="input input--text input--med comment__input"/>
                 </div>
-                <p class="alert alert--warning" *ngIf="form?.email?.touched && form?.email?.error?.required">Email is required.</p>
-                <p class="alert alert--warning" *ngIf="form?.email?.touched && form?.email?.error?.email">Please enter valid e-mail address.</p>
+                <p class="alert alert--warning" *ngIf="form?.controls?.email?.dirty && form?.controls?.email?.errors?.required">Email is required.</p>
+                <p class="alert alert--warning" *ngIf="form?.controls?.email?.dirty && form?.controls?.email?.errors?.email">Please enter valid e-mail address.</p>
             </div>
             <div class="form__field">
                 <div class="comment__layout">
                     <label class="form__label comment__label" for="message">Message</label>
-                    <textarea name="message" id="message" formControlName="comment" maxlength="1000" class="input input--textarea comment__input"></textarea>
+                    <textarea name="message" id="message" formControlName="message" maxlength="1000" class="input input--textarea comment__input"></textarea>
                 </div>
-                <p class="alert alert--warning" *ngIf="form?.message?.touched && form?.message?.error?.required">Message is required.</p>
+                <p class="alert alert--warning" *ngIf="form?.controls?.message?.dirty && form?.controls?.message?.errors?.required">Message is required.</p>
             </div>
             <div class="form__field group">
                 <button type="submit" [disabled]="form.invalid" [ngClass]="{'btn--disabled' : form.invalid}" class="btn btn--primary btn--med rounded push">Send</button>

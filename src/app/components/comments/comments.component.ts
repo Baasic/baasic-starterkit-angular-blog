@@ -35,8 +35,8 @@ export class CommentsComponent implements OnInit {
     private createForm(): void {
         let form: any = {
             author: new FormControl(null, Validators.required),
-            email: new FormControl(null, Validators.required),
-            comment: new FormControl(null, Validators.required)
+            email: new FormControl(null, [Validators.required, Validators.email]),
+            message: new FormControl(null, Validators.required)
         };
 
         this.form = new FormGroup(form);
@@ -68,19 +68,23 @@ export class CommentsComponent implements OnInit {
     async saveComments(): Promise<void> {
         this.loaderService.suspend();
 
-        let formData: IArticleComment = this.form.getRawValue();
+        let formData = this.form.getRawValue();
 
         let options = {
             subscriberAuthor: false
         };
 
-        await this.blogService.comments.create({
-            articleId: this.articleId,
-            author: formData.author,
-            comment: formData.comment,
-            email: formData.email,
-            options: options
-        });
+        try {
+            await this.blogService.comments.create({
+                articleId: this.articleId,
+                author: formData.author,
+                comment: formData.message,
+                email: formData.email,
+                options: options
+            });
+        } catch(err) {
+            this.loaderService.resume();
+        }
 
         await this.loadComments();
 
