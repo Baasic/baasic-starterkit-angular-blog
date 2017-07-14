@@ -53,7 +53,7 @@
                     <div class="comment__message">{{ comment?.comment }}</div>
                 </div>
             </div>
-            <!--<comment-replies comment-id="comment.id" article-id="articleId"></comment-replies>-->
+            <comment-replies [commentId]="comment.id" [articleId]="articleId"></comment-replies>
         </div>
     </div>
 

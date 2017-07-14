@@ -1,0 +1,58 @@
+<div class="spc--bottom--med">
+    <a href="javascript:void(0);" (click)="active=!active" [ngClass]="{'active': active}" class="comment--reply__button" [hidden]="!blog?.allowComments">Reply</a>
+</div>
+
+<div class="fade" [hidden]="!active">
+    <h3 class="spc--bottom--med">Add reply to comment:</h3>
+    <div>
+        <form name="repliesForm" [formGroup]="form" novalidate class="form" (ngSubmit)="saveReplies(comment, reply);">
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="author">Name:<br/><small>({{128-reply?.author?.length}} characters left)</small></label>
+                    <input type="text" name="author" id="author" formControlName="author" maxlength="128" class="input input--text input--med col comment__input" required />
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.controls?.author?.dirty && form?.controls?.author?.errors?.required">Name is required.</p>
+            </div>
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="email">Email address:</label>
+                    <input type="email" name="email" id="email" formControlName="email" class="input input--text input--med col comment__input" required />
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.controls?.email?.dirty && form?.controls?.email?.errors?.required">Email is required.</p>
+                <p class="alert alert--warning" *ngIf="form?.controls?.email?.dirty && form?.controls?.email?.errors?.email">Please enter valid e-mail address.</p>
+            </div>
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="message">Message</label>
+                    <textarea name="message" id="message" formControlName="message" class="input input--textarea col comment__input" required></textarea>
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.controls?.message?.dirty && form?.controls?.message?.errors?.required">Message is required.</p>
+            </div>
+            <div class="form__field group">
+                <div class="push">
+                    <button type="submit" class="btn btn--primary btn--med rounded" [disabled]="form.invalid" [ngClass]="{'btn--disabled' : form.invalid}" (click)="active=!active;">Reply</button>
+                    <button type="button" class="btn btn--light btn--med rounded" (click)="active=!active">Cancel</button>
+                </div>
+            </div>
+            <div *ngIf="error">
+                {{ error }}
+            </div>
+        </form>
+    </div>
+    <hr>
+</div>
+
+<div *ngFor="let reply of replies" class="spc--top--med comment--reply">
+    <div class="gravatar">
+        <img gravatar [email]="reply?.email" class="gravatar__image">
+    </div>
+    <div>
+        <p class="comment__author"> {{ reply.author }}
+            <span *ngIf="!reply?.author">Anonymous</span>
+        </p>
+        <p class="comment__time">{{ reply?.dateCreated | date: 'MMM d, y H:mm'}}</p>
+    </div>
+    <div>
+        <div class="comment__message">{{ reply?.reply }}</div>
+    </div>
+</div>

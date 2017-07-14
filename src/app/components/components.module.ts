@@ -8,6 +8,7 @@ import { MtCommonModule } from 'common';
 import { 
     BlogListComponent,
     BlogPostComponent,
+    CommentRepliesComponent,
     CommentsComponent,
     GravatarDirective,
     LoaderComponent,
@@ -32,6 +33,7 @@ import {
     declarations: [
         BlogListComponent,
         BlogPostComponent,
+        CommentRepliesComponent,
         CommentsComponent,
         LoaderComponent,
         LoginComponent,
@@ -46,6 +48,7 @@ import {
     exports: [
         BlogListComponent,
         BlogPostComponent,
+        CommentRepliesComponent,
         CommentsComponent,
         LoaderComponent,
         LoginComponent,
