@@ -111,9 +111,7 @@ export class BlogService {
                 return (await that.articleService.articles.comments.find(id, options)).data;
             },
 
-            create: async function(articleId: string, data: IArticleComment): Promise<IArticleComment> {
-                data.articleId = articleId;
-
+            create: async function(data: IArticleComment): Promise<IArticleComment> {
                 return (await that.articleService.articles.comments.create(data)).data;
             },
 

@@ -37,7 +37,6 @@ export class BlogPostDetailsRoute implements OnInit {
         this.content = this.blog.content;
 
         this.user = await this.userService.getUser();
-        console.log(this.user);
 
         this.loaderService.resume();
     }

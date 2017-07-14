@@ -29,7 +29,7 @@
         </span>
         <button type="button" class="btn btn--light btn--med rounded" href="javascript:void(0);" [routerLink]="['/main']" rel="home">Back</button>
         <div class="spc--top--med">
-            <!--<blog-comments article-id='blog.id' blog='blog' ng-if="!blog.hideComments"></blog-comments>-->
+            <baasic-blog-comments [articleId]='blog?.id' [blog]="blog" *ngIf="!blog?.hideComments"></baasic-blog-comments>
         </div>
     </div>
 </article>

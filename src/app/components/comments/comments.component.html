@@ -1,0 +1,67 @@
+<div class="comment__body" id="blogPostComments" *ngIf="blog?.allowComments">
+<h3 class="spc--bottom--med">Post your comment:</h3>
+    <div>
+        <form name="commentsForm" [formGroup]="form" novalidate class="form" (ngSubmit)="saveComments(comments)">
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="author">Name:<br/><small>({{128-comments?.author?.length}} characters left)</small></label>
+                    <input type="text" name="author" id="author" formControlName="author" maxlength="128" class="input input--text input--med comment__input" />
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.author?.touched && form?.author?.error?.required">Name is required.</p>
+            </div>
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="email">Email address:</label>
+                    <input type="email" name="email" id="email" formControlName="email" class="input input--text input--med comment__input"/>
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.email?.touched && form?.email?.error?.required">Email is required.</p>
+                <p class="alert alert--warning" *ngIf="form?.email?.touched && form?.email?.error?.email">Please enter valid e-mail address.</p>
+            </div>
+            <div class="form__field">
+                <div class="comment__layout">
+                    <label class="form__label comment__label" for="message">Message</label>
+                    <textarea name="message" id="message" formControlName="comment" maxlength="1000" class="input input--textarea comment__input"></textarea>
+                </div>
+                <p class="alert alert--warning" *ngIf="form?.message?.touched && form?.message?.error?.required">Message is required.</p>
+            </div>
+            <div class="form__field group">
+                <button type="submit" [disabled]="form.invalid" [ngClass]="{'btn--disabled' : form.invalid}" class="btn btn--primary btn--med rounded push">Send</button>
+            </div>
+            <div *ngIf="error">
+                {{ error }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="comment__body" *ngIf="hasComments">
+    <hr />
+    <h3 class="spc--bottom--med">Comments:</h3>
+    <div *ngFor="let comment of comments">
+        <div class="comment__container">
+            <div class="comment__info">
+                <div>
+                    <div class="gravatar">
+                        <img gravatar [email]="comment?.email" class="gravatar__image">
+                    </div>
+                    <div>
+                        <p class="comment__author">{{ comment?.author }}</p>
+                        <p class="comment__time">{{ comment?.dateCreated | date: 'MMM d, y H:mm'}}</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="comment__message">{{ comment?.comment }}</div>
+                </div>
+            </div>
+            <!--<comment-replies comment-id="comment.id" article-id="articleId"></comment-replies>-->
+        </div>
+    </div>
+
+    <div class="spc--bottom--lrg">
+        <hr>
+        <!--<pager pager-data="comments.pagerData" ng-show="pager.hasPrevious || pager.hasNext">
+            <a ui-sref="master.blog-detail({ page: pager.currentPage - 1, id: blogPostComments })" class="btn btn--light btn--med rounded" ng-show="pager.hasPrevious">Prev</a>
+            <a ui-sref="master.blog-detail({ page: pager.currentPage + 1, id: blogPostComments })" class="btn btn--light btn--med rounded" ng-show="pager.hasNext">Next</a>
+        </pager>-->
+    </div>
+</div>
