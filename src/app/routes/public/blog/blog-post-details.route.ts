@@ -50,6 +50,21 @@ export class BlogPostDetailsRoute implements OnInit {
         this.router.navigate(['/blog-post/edit', this.blog.slug]);
     }
 
+    async deleteBlog(): Promise<void> {
+        if (confirm('Are you sure you want to delete this post?')) {
+            this.loaderService.suspend();
+
+            try {
+                await this.blogService.remove(this.blog);
+                this.router.navigate(['/main']);
+            } catch(err) {
+                console.log(err);
+            } finally {
+                this.loaderService.resume();
+            }
+        }
+    }
+
     searchTags(tag: IArticleTag): void {
         this.router.navigate(['/blog-search', { tags: tag.slug }]);
     }
