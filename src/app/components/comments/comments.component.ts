@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { IArticleComment } from 'baasic-sdk-angular';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { LoaderService } from 'common';
 import { BlogService, IBlog } from 'common/data';
 
@@ -10,7 +12,7 @@ import { BlogService, IBlog } from 'common/data';
     templateUrl: 'comments.component.html'
 })
 
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, OnDestroy {
 
     @Input('articleId') articleId: string;
     @Input('blog') blog: IBlog;
@@ -20,16 +22,28 @@ export class CommentsComponent implements OnInit {
     comments: IArticleComment[];
     hasComments: boolean;
 
+    private paramsSubscription: Subscription;
+
+    pagerData: any;
+
     constructor(
         private blogService: BlogService,
         private route: ActivatedRoute,
-        private loaderService: LoaderService
+        private loaderService: LoaderService,
+        private router: Router
     ) { 
         this.createForm();
     }
 
     async ngOnInit(): Promise<void> { 
-        await this.loadComments();
+        this.paramsSubscription = this.route.paramMap.subscribe(async (params: ParamMap) => {
+            const page = +params.get('page');
+            await this.loadComments(page);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.paramsSubscription.unsubscribe();
     }
 
     private createForm(): void {
@@ -42,7 +56,7 @@ export class CommentsComponent implements OnInit {
         this.form = new FormGroup(form);
     }
 
-    private async loadComments(): Promise<void> {
+    private async loadComments(page?: number): Promise<void> {
         this.loaderService.suspend();
 
         const blogSlug = this.route.snapshot.params['slug'];
@@ -52,7 +66,7 @@ export class CommentsComponent implements OnInit {
                 embed: 'user',
                 orderBy: 'dateUpdated',
                 orderDirection: 'desc',
-                pageNumber: 1,
+                pageNumber: page || 1,
                 pageSize: 10
             });
         }
@@ -60,6 +74,12 @@ export class CommentsComponent implements OnInit {
         if (data) {
             this.comments = data.item;
             this.hasComments = data.totalRecords > 0;
+
+            this.pagerData = {
+                currentPage: data.page,
+                pageSize: data.recordsPerPage,
+                totalRecords: data.totalRecords
+            };
         }        
 
         this.loaderService.resume();
@@ -89,5 +109,13 @@ export class CommentsComponent implements OnInit {
         await this.loadComments();
 
         this.loaderService.resume();
+    }
+
+    async prevPage(): Promise<void> {
+        this.router.navigate(['/blog-post', { slug: this.blog.slug, page: this.pagerData.currentPage - 1 }]);
+    }
+
+    async nextPage(): Promise<void> {
+        this.router.navigate(['/blog-post', { slug: this.blog.slug, page: this.pagerData.currentPage + 1 }]);
     }
 }

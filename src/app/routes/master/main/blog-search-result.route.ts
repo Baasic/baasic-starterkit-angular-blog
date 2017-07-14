@@ -22,6 +22,8 @@ export class BlogSearchResultRoute implements OnInit, OnDestroy {
     private searchParam: string;
     private tagsParam: string;
 
+    private pagerData: any;
+
     constructor(
         private blogService: BlogService,
         private loaderService: LoaderService,
@@ -72,16 +74,32 @@ export class BlogSearchResultRoute implements OnInit, OnDestroy {
     }
 
     private parseBlogList(data: IBaasicQueryModel<IBlog>): void {
+        this.pagerData = {
+            currentPage: data.page,
+            pageSize: data.recordsPerPage,
+            totalRecords: data.totalRecords
+        };
+
         this.blogList = data.item;
         
         this.hasBlogs = data.totalRecords > 0;
     }
 
     async prevPage(): Promise<void> {
-        console.log("PREV");
+        try {
+            let data = await this.blogService.previous(this.blogList);
+            this.parseBlogList(data);
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     async nextPage(): Promise<void> {
-        console.log("NEXT");
+         try {
+            let data = await this.blogService.next(this.blogList);
+            this.parseBlogList(data);
+        } catch(err) {
+            console.log(err);
+        }
     }
 }

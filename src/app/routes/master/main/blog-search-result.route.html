@@ -18,6 +18,8 @@
         <button type="button" [hidden]="!pagerInfo.hasNext" (click)="nextPage()">Next</button>
     </div>-->
 
+    <pager [pagerData]="pagerData" (onNext)="nextPage()" (onPrev)="prevPage()"></pager>
+
     <hr>
     <a class="btn btn--light btn--med rounded spc--bottom--med" href="javascript:void(0);" [routerLink]="['/main']" rel="home">Back</a>
 </div>

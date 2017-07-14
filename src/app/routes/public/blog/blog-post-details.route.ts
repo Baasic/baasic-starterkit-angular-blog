@@ -27,6 +27,10 @@ export class BlogPostDetailsRoute implements OnInit {
     ) { }
 
     async ngOnInit(): Promise<void> { 
+        await this.loadBlog();
+    }
+
+    private async loadBlog(): Promise<void> {
         this.loaderService.suspend();
 
         const blogSlug = this.route.snapshot.params['slug'];

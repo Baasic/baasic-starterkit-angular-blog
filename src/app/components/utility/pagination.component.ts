@@ -11,9 +11,9 @@ import {
 @Component({
     selector: 'pager',
     template: `
-        <div class="pager">
+        <div class="pager" *ngIf="hasPrev || hasNext">
             <hr>
-            <a href="javascript:void(0)" class="btn btn--light btn--med rounded" *ngIf="hasPrevious" (click)="prevEvent.emit()">Prev</a>
+            <a href="javascript:void(0)" class="btn btn--light btn--med rounded" *ngIf="hasPrev" (click)="prevEvent.emit()">Prev</a>
             <a href="javascript:void(0)" class="btn btn--light btn--med rounded" *ngIf="hasNext" (click)="nextEvent.emit()">Next</a>
         </div>
     `
@@ -26,7 +26,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     @Output('onNext') nextEvent: EventEmitter<void> = new EventEmitter<void>();
     @Output('onPrev') prevEvent: EventEmitter<void> = new EventEmitter<void>();
 
-    hasPrevious: boolean;
+    hasPrev: boolean;
     hasNext: boolean;
     hasPreviousGroup: boolean;
     hasNextGroup: boolean;
@@ -56,7 +56,7 @@ export class PaginationComponent implements OnInit, OnChanges {
                 pages.push(i);
             }
 
-            this.hasPrevious = currentPage > 1;
+            this.hasPrev = currentPage > 1;
             this.hasNext = currentPage < numberOfPages;
             this.hasPreviousGroup = currentGroupIndex > 1;
             this.hasNextGroup = currentGroupIndex < numberOfGroups;

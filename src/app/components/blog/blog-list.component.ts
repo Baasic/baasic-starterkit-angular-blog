@@ -39,7 +39,7 @@ export class BlogListComponent implements OnInit, OnDestroy {
         this.paramsSubscription.unsubscribe();
     }
 
-    async loadBlogs(page: number): Promise<void> {
+    async loadBlogs(page?: number): Promise<void> {
         this.loaderService.suspend();
 
         let blogList = await this.blogService.find({

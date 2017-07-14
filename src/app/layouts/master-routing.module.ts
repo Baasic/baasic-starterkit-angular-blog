@@ -31,7 +31,7 @@ import { HomeRoute } from 'routes/public';
                         path: '',
                         component: MainLayout,
                         children: [
-                            { path: 'main', component: HomeRoute},
+                            { path: 'main', component: HomeRoute },
                             { path: 'author/:authorId', component: ProfileDetailRoute },
                             { path: 'blog-search', component: BlogSearchResultRoute }
                         ]
