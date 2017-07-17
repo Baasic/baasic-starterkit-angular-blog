@@ -1,0 +1,15 @@
+<div>
+    <div class="tags" (click)="onClick($event)">
+        <ul class="tags-list">
+            <li class="tags-item" *ngFor="let model of models">{{model.tag}}<a href="javascript:void(0)" (click)="removeTag(model)"> x</a></li>
+        </ul>
+
+        <input type="text" class="tags-input" #searchInput [formControl]="searchForm" autocomplete="off" Placeholder="Add a tag"/>
+    </div>
+
+    <div [hidden]="isHidden" class="autocomplete">
+        <ul class="autocomplete-list">
+            <li class="autocomplete-item" *ngFor="let item of items" (click)="onSelect(item)">{{item.tag}}</li>
+        </ul>
+    </div>
+</div>

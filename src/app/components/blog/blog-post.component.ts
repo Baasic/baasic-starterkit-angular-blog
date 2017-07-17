@@ -41,6 +41,7 @@ export class BlogPostComponent implements OnInit, OnChanges {
                     featured: new FormControl(blog.featured, Validators.required),
                     excerpt: new FormControl(blog.excerpt),
                     content: new FormControl(blog.content, Validators.required),
+                    tags: new FormControl(blog.tags),
                     allowComments: new FormControl(blog.allowComments),
                     hideComments: new FormControl(blog.hideComments),
                 };
@@ -58,6 +59,7 @@ export class BlogPostComponent implements OnInit, OnChanges {
             featured: new FormControl(null, Validators.required),
             excerpt: new FormControl(null),
             content: new FormControl(null, Validators.required),
+            tags: new FormControl(null),
             allowComments: new FormControl(null),
             hideComments: new FormControl(null),
         };
@@ -122,7 +124,7 @@ export class BlogPostComponent implements OnInit, OnChanges {
 
     async saveBlog(): Promise<void> {
         let blog = this.form.getRawValue();
-
+        
         if (blog) {
             blog.readingTime = this.readingTime(blog.content);
             let user = this.membershipService.login.loadUserData({});

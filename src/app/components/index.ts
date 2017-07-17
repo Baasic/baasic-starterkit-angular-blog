@@ -8,6 +8,7 @@ export * from './membership/social-login.component';
 export * from './membership/register.component';
 export * from './comments/comment-replies.component';
 export * from './comments/comments.component';
+export * from './autocomplete/tags-autocomplete.component';
 export * from './blog/blog-list.component';
 export * from './blog/markdown-syntax-highlight.component';
 export * from './profile/profile.component';

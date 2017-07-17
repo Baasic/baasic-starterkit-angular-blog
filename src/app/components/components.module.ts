@@ -20,7 +20,8 @@ import {
     ProfileDetailComponent,
     RegisterComponent,
     SidebarComponent,
-    SocialLoginComponent 
+    SocialLoginComponent,
+    TagsAutocompleteComponent
 } from 'components';
 
 @NgModule({
@@ -47,7 +48,8 @@ import {
         RegisterComponent,
         SidebarComponent,
         SocialLoginComponent,
-        GravatarDirective
+        GravatarDirective,
+        TagsAutocompleteComponent
     ],
     exports: [
         BlogListComponent,
@@ -63,7 +65,8 @@ import {
         ProfileDetailComponent,
         RegisterComponent,
         SidebarComponent,
-        SocialLoginComponent
+        SocialLoginComponent,
+        TagsAutocompleteComponent
     ],
     providers: [
         //components

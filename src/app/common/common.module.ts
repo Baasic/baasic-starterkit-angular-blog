@@ -12,7 +12,8 @@ import {
 import { 
     BlogService, 
     ProfileService,
-    ResourceService 
+    ResourceService,
+    TagService
 } from 'common/data';
 import { 
     CanActivateGuard, 
@@ -40,6 +41,7 @@ import { SharedModule } from 'shared';
         //common/data
         BlogService,
         ProfileService,
+        TagService,
         //common/security
         CanActivateGuard,
         LoginService,
