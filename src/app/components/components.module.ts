@@ -18,6 +18,7 @@ import {
     PaginationComponent,
     ProfileComponent,
     ProfileDetailComponent,
+    RegisterComponent,
     SidebarComponent,
     SocialLoginComponent 
 } from 'components';
@@ -43,6 +44,7 @@ import {
         PaginationComponent,
         ProfileComponent,
         ProfileDetailComponent,
+        RegisterComponent,
         SidebarComponent,
         SocialLoginComponent,
         GravatarDirective
@@ -59,6 +61,7 @@ import {
         PaginationComponent,
         ProfileComponent,
         ProfileDetailComponent,
+        RegisterComponent,
         SidebarComponent,
         SocialLoginComponent
     ],

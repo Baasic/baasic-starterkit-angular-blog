@@ -5,16 +5,16 @@
 
             <div class="form__field--half">
                 <label class="form__label" for="email">Email</label>
-                <input class="input input--text" type="email" id="email" name="email" formControlName="email" required placeholder="Enter your email" />
+                <input class="input input--text" type="email" id="email" name="email" formControlName="email" placeholder="Enter your email" />
                 <div *ngIf="form?.controls?.email?.touched">
-                    <p class="alert alert--warning" *ngIf="form?.controls?..email?.errors?.required">Email is required.</p>
+                    <p class="alert alert--warning" *ngIf="form?.controls?.email?.errors?.required">Email is required.</p>
                     <p class="alert alert--warning" *ngIf="form?.controls?.email?.errors?.email">Please enter the correct email address</p>
                 </div>
             </div>
 
             <div class="form__field--half">
                 <label class="form__label" for="userName">Username</label>
-                <input class="input input--text" type="text" id="userName" name="userName" formControlName="userName" required placeholder="Enter your username" />
+                <input class="input input--text" type="text" id="userName" name="userName" formControlName="userName" placeholder="Enter your username" />
                 <div *ngIf="form?.controls?.userName?.touched">
                     <p class="alert alert--warning"*ngIf="form?.controls?.userName?.errors?.required">Username is required.</p>
                 </div>
@@ -25,7 +25,7 @@
         <div class="group">
             <div class="form__field--half">
                 <label class="form__label" for="password">Password</label>
-                <input class="input input--text" type="password" id="password" name="password" formControlName="password" required placeholder="Password" autocomplete="off" />
+                <input class="input input--text" type="password" id="password" name="password" formControlName="password" placeholder="Password" autocomplete="off" />
                 <div *ngIf="form?.controls?.password?.touched">
                     <p class="alert alert--warning" *ngIf="form?.controls?.password?.errors?.required">Password is required.</p>
                 </div>
@@ -33,10 +33,10 @@
 
             <div class="form__field--half">
                 <label class="form__label" for="confirmPassword">Confirm Password</label>
-                <input class="input input--text" type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" required placeholder="Confirm Password" autocomplete="off" />
+                <input class="input input--text" type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="off" />
                 <div *ngIf="form?.controls?.confirmPassword?.touched">
                     <p class="alert alert--warning" *ngIf="form?.controls?.confirmPassword?.errors?.required">Confirm Password is required.</p>
-                    <!--<p class="alert alert--warning" *ngIf="form?.controls?.confirmPassword?.viewValue != '' && (registrationForm.password.$viewValue != registrationForm.confirmPassword.$viewValue)">Password and Confirm Password do not match.</p>-->
+                    <p class="alert alert--warning" *ngIf="form?.controls?.confirmPassword?.value != '' && (form?.controls?.password?.value != form?.controls?.confirmPassword?.value)">Password and Confirm Password do not match.</p>
                 </div>
             </div>
 

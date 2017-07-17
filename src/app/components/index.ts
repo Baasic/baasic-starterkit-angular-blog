@@ -5,6 +5,7 @@ export * from './membership/logout.component';
 export * from './sidebar.component';
 export * from './membership/login.component';
 export * from './membership/social-login.component';
+export * from './membership/register.component';
 export * from './comments/comment-replies.component';
 export * from './comments/comments.component';
 export * from './blog/blog-list.component';

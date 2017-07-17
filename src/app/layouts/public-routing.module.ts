@@ -3,10 +3,11 @@ import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { PublicLayout } from 'layouts';
 import { 
+    BlogPostDetailsRoute,
     HomeRoute, 
-    LoginRoute, 
-    SignUpRoute,
-    BlogPostDetailsRoute
+    LoginRoute,
+    RegisterRoute, 
+    SignUpRoute
  } from 'routes/public';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
                     { path: '', redirectTo: '/main', pathMatch: 'full' },
                     { path: 'login', component: LoginRoute },
                     { path: 'signup', component: SignUpRoute },
+                    { path: 'register', component: RegisterRoute },
                     { path: 'blog-post/:slug', component: BlogPostDetailsRoute }
                 ]
             }

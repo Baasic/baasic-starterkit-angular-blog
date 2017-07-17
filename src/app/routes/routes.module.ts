@@ -9,10 +9,11 @@ import { NoContentRoute } from 'routes';
 import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/master';
 import { ProfileDetailRoute, BlogSearchResultRoute } from 'routes/master/main';
 import { 
+    BlogPostDetailsRoute,
     HomeRoute, 
     LoginRoute, 
-    SignUpRoute,
-    BlogPostDetailsRoute
+    RegisterRoute,
+    SignUpRoute
  } from 'routes/public';
 
 
@@ -33,6 +34,7 @@ import {
         SignUpRoute,
         NoContentRoute,
         BlogPostDetailsRoute,
+        RegisterRoute,
         // main
         NewBlogPostRoute,
         EditBlogPostRoute,
@@ -47,7 +49,8 @@ import {
         NewBlogPostRoute,
         EditBlogPostRoute,
         BlogPostDetailsRoute,
-        BlogSearchResultRoute
+        BlogSearchResultRoute,
+        RegisterRoute
     ]
 })
 export class MtRoutesModule { }
