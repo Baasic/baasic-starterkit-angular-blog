@@ -2,9 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { LoaderService } from 'common';
+import { LoaderService, UserEventingService } from 'common';
 import { BlogService } from 'common/data';
-import { IBlogUser } from 'common/security';
+import { IBlogUser, UserService } from 'common/security';
 
 @Component({
     selector: 'baasic-blog-list',
@@ -20,12 +20,15 @@ export class BlogListComponent implements OnInit, OnDestroy {
     public pagerData: any;
 
     public paramsSubscription: Subscription;
+    public userEventingSubscription: Subscription;
     
     constructor(
         private blogService: BlogService,
         private loaderService: LoaderService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private userService: UserService,
+        private userEventingService: UserEventingService
     ) { }
 
     async ngOnInit(): Promise<void> { 
@@ -33,10 +36,15 @@ export class BlogListComponent implements OnInit, OnDestroy {
             const page = +params.get('page');
             await this.loadBlogs(page);
         });
+
+        this.userEventingSubscription = this.userEventingService.logoutEventing$.subscribe(async () => {
+            this.user = await this.userService.getUser();
+        });
     }
 
     ngOnDestroy(): void {
         this.paramsSubscription.unsubscribe();
+        this.userEventingSubscription.unsubscribe();
     }
 
     async loadBlogs(page?: number): Promise<void> {
