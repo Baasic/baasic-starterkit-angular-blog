@@ -7,14 +7,13 @@ import { MtCommonModule } from 'common';
 import { MtComponentsModule } from 'components';
 import { NoContentRoute } from 'routes';
 import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/master';
-import { ProfileDetailRoute, BlogSearchResultRoute } from 'routes/master/main';
+import { BlogSearchResultRoute, ProfileDetailRoute, HomeRoute } from 'routes/master/main';
 import { 
     BlogPostDetailsRoute,
-    HomeRoute, 
     LoginRoute, 
     RegisterRoute,
     SignUpRoute
- } from 'routes/public';
+ } from 'routes/main';
 
 
 @NgModule({

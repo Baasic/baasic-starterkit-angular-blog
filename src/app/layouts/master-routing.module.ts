@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
 import { CanActivateGuard } from 'common/security';
-import { MasterLayout, MainLayout } from 'layouts';
+import { MasterLayout, MasterMainLayout } from 'layouts';
 import { NoContentRoute } from 'routes';
 import { NewBlogPostRoute, EditBlogPostRoute } from 'routes/master';
-import { ProfileDetailRoute, BlogSearchResultRoute } from 'routes/master/main';
-import { HomeRoute } from 'routes/public';
+import { BlogSearchResultRoute, ProfileDetailRoute, HomeRoute } from 'routes/master/main';
 
 @NgModule({
     imports: [
@@ -29,7 +28,7 @@ import { HomeRoute } from 'routes/public';
                     },
                     {
                         path: '',
-                        component: MainLayout,
+                        component: MasterMainLayout,
                         children: [
                             { path: 'main', component: HomeRoute },
                             { path: 'author/:authorId', component: ProfileDetailRoute },

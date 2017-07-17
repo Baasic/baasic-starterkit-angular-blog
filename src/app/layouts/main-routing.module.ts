@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MtCommonModule } from 'common';
-import { CanActivateGuard } from 'common/security';
 import { MainLayout } from 'layouts';
-import { NoContentRoute } from 'routes';
-import { HomeRoute } from 'routes/public';
-import { ProfileDetailRoute } from 'routes/master/main';
-
+import { 
+    BlogPostDetailsRoute,
+    HomeRoute, 
+    LoginRoute,
+    RegisterRoute, 
+    SignUpRoute
+ } from 'routes/main';
 
 @NgModule({
     imports: [
@@ -15,11 +17,12 @@ import { ProfileDetailRoute } from 'routes/master/main';
             {
                 path: '',
                 component: MainLayout,
-                data: {},
                 children: [
-                    { path: 'main', component: HomeRoute},
-                    { path: 'author/:authorId', component: ProfileDetailRoute },
-                    { path: '**', component: NoContentRoute },
+                    { path: '', redirectTo: '/main', pathMatch: 'full' },
+                    { path: 'login', component: LoginRoute },
+                    { path: 'signup', component: SignUpRoute },
+                    { path: 'register', component: RegisterRoute },
+                    { path: 'blog-post/:slug', component: BlogPostDetailsRoute }
                 ]
             }
         ])

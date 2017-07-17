@@ -1,0 +1,26 @@
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="container container__main">
+    <div class="layout">
+        <div class="layout__content">
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+
+        <baasic-sidebar></baasic-sidebar>
+    </div>
+</div>
+
+<div class="message" [ngClass]="{'close': messageClosed}">
+    <div class="message__container">
+        <a href="http://baasic.com" class="message__icon--primary">
+        </a>
+        <a href="https://github.com/Baasic/baasic-starterkit-angularjs-blog">
+            <p class="message__title">Grab a Starter Kit and start building!</p>
+        </a>
+    </div>
+    <a href="javascript:void(0)" (click)="toggleMessage()" [ngClass]="{'nShow': messageClosed}"><span class="message__icon--secondary">Close</span></a>
+</div>
